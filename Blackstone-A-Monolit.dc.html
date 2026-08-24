@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+body{margin:0;background:#0a0a0a;color:#f4f2ef;font-family:Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#f4f2ef;text-decoration:none}
+a:hover{color:#b9a07e}
+::selection{background:#b9a07e;color:#0a0a0a}
+@keyframes mqA{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes riseA{from{opacity:0;transform:translateY(0.42em) rotate(2deg)}to{opacity:1;transform:none}}
+@keyframes scrollDotA{0%{transform:translateY(-14px);opacity:0}30%{opacity:1}100%{transform:translateY(14px);opacity:0}}
+@keyframes breatheA{0%,100%{opacity:.25}50%{opacity:.7}}
+</style>
+</helmet>
+
+<div style="position:fixed;top:0;left:0;height:2px;width:100%;z-index:60;background:rgba(255,255,255,.07)">
+  <div id="bsProg" style="height:100%;width:0%;background:#b9a07e"></div>
+</div>
+
+<header id="bsNav" style="position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:22px 48px;transition:padding .4s ease,background .4s ease,backdrop-filter .4s ease">
+  <div style="display:flex;flex-direction:column;gap:3px">
+    <div style="font-family:Oswald;font-weight:600;font-size:21px;letter-spacing:.22em;line-height:1">BLACKSTONE</div>
+    <div style="display:flex;align-items:center;gap:8px"><span style="width:26px;height:1px;background:rgba(255,255,255,.35)"></span><span style="font-size:7.5px;letter-spacing:.42em;color:rgba(244,242,239,.55)">BARBERSHOP</span></div>
+  </div>
+  <nav style="display:flex;align-items:center;gap:34px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(244,242,239,.62)">
+    <a href="#a-about" style="color:inherit" style-hover="color:#f4f2ef">О нас</a>
+    <a href="#a-services" style="color:inherit" style-hover="color:#f4f2ef">Услуги</a>
+    <a href="#a-masters" style="color:inherit" style-hover="color:#f4f2ef">Мастера</a>
+    <a href="#a-loc" style="color:inherit" style-hover="color:#f4f2ef">Локации</a>
+    <a href="#a-contacts" style="color:inherit" style-hover="color:#f4f2ef">Контакты</a>
+    <a href="#a-book" style="border:1px solid rgba(255,255,255,.28);padding:12px 22px;letter-spacing:.2em;color:#f4f2ef;transition:background .35s ease,color .35s ease,border-color .35s" style-hover="background:#f4f2ef;color:#0a0a0a;border-color:#f4f2ef">Записаться</a>
+  </nav>
+</header>
+
+<section style="position:relative;height:100vh;min-height:760px;overflow:hidden">
+  <div id="bsHeroImg" style="position:absolute;inset:-4% -4% -4% -4%;filter:grayscale(1) contrast(1.12) brightness(.72);transition:transform .9s cubic-bezier(.2,.8,.2,1)">
+    <image-slot id="a-hero" shape="rect" placeholder="hero — мастер за работой, крупный портрет"></image-slot>
+  </div>
+  <div style="position:absolute;inset:0;background:linear-gradient(100deg,#0a0a0a 8%,rgba(10,10,10,.86) 38%,rgba(10,10,10,.25) 72%,rgba(10,10,10,.75) 100%);pointer-events:none"></div>
+  <div style="position:absolute;left:48px;bottom:96px;max-width:760px;pointer-events:none">
+    <div data-rv="0" style="font-size:10.5px;letter-spacing:.42em;text-transform:uppercase;color:rgba(244,242,239,.6);margin-bottom:26px">Мужской стиль. Без компромиссов.</div>
+    <h1 style="margin:0;font-family:Oswald;font-weight:600;font-size:clamp(72px,12.5vw,196px);line-height:.86;letter-spacing:-.01em;display:flex;flex-wrap:wrap">
+      <span style="display:inline-block;animation:riseA .9s .10s cubic-bezier(.2,.9,.2,1) both">B</span><span style="display:inline-block;animation:riseA .9s .16s cubic-bezier(.2,.9,.2,1) both">L</span><span style="display:inline-block;animation:riseA .9s .22s cubic-bezier(.2,.9,.2,1) both">A</span><span style="display:inline-block;animation:riseA .9s .28s cubic-bezier(.2,.9,.2,1) both">C</span><span style="display:inline-block;animation:riseA .9s .34s cubic-bezier(.2,.9,.2,1) both">K</span><span style="display:inline-block;animation:riseA .9s .40s cubic-bezier(.2,.9,.2,1) both">S</span><span style="display:inline-block;animation:riseA .9s .46s cubic-bezier(.2,.9,.2,1) both">T</span><span style="display:inline-block;animation:riseA .9s .52s cubic-bezier(.2,.9,.2,1) both">O</span><span style="display:inline-block;animation:riseA .9s .58s cubic-bezier(.2,.9,.2,1) both">N</span><span style="display:inline-block;animation:riseA .9s .64s cubic-bezier(.2,.9,.2,1) both">E</span>
+    </h1>
+    <p data-rv=".2" style="margin:30px 0 40px;font-size:16px;line-height:1.75;color:rgba(244,242,239,.72);max-width:430px;text-wrap:pretty">Современный барбершоп в Астане. Стрижки, борода и атмосфера настоящего братства.</p>
+    <div data-rv=".3" style="display:flex;align-items:center;gap:32px;pointer-events:auto">
+      <a href="#a-book" style="background:#f4f2ef;color:#0a0a0a;padding:19px 38px;font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:600;transition:transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s" style-hover="transform:translateY(-3px);box-shadow:0 18px 40px rgba(0,0,0,.55);color:#0a0a0a">Записаться онлайн</a>
+      <a href="#a-services" style="display:flex;align-items:center;gap:14px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(244,242,239,.75)"><span>Смотреть услуги</span><span style="width:44px;height:1px;background:currentColor;display:block"></span></a>
+    </div>
+  </div>
+  <div style="position:absolute;right:34px;bottom:96px;display:flex;flex-direction:column;align-items:center;gap:14px">
+    <span style="font-size:9px;letter-spacing:.4em;text-transform:uppercase;color:rgba(244,242,239,.45);writing-mode:vertical-rl">Scroll</span>
+    <span style="width:1px;height:70px;background:rgba(255,255,255,.18);position:relative;overflow:hidden"><span style="position:absolute;inset:0;background:#b9a07e;animation:scrollDotA 2.2s infinite ease-in-out"></span></span>
+  </div>
+</section>
+
+<div style="border-top:1px solid rgba(255,255,255,.09);border-bottom:1px solid rgba(255,255,255,.09);overflow:hidden;padding:22px 0;background:#0c0c0c">
+  <div style="display:flex;width:max-content;animation:mqA 26s linear infinite;font-family:Oswald;font-weight:300;font-size:34px;letter-spacing:.1em;text-transform:uppercase;color:rgba(244,242,239,.5);white-space:nowrap;gap:0">
+    <span style="display:flex;gap:44px;padding-right:44px"><span>Мужская стрижка</span><span style="color:#b9a07e">✦</span><span>Борода</span><span style="color:#b9a07e">✦</span><span>Бритьё опасной бритвой</span><span style="color:#b9a07e">✦</span><span>Укладка</span><span style="color:#b9a07e">✦</span><span>Камуфляж седины</span><span style="color:#b9a07e">✦</span></span>
+    <span style="display:flex;gap:44px;padding-right:44px"><span>Мужская стрижка</span><span style="color:#b9a07e">✦</span><span>Борода</span><span style="color:#b9a07e">✦</span><span>Бритьё опасной бритвой</span><span style="color:#b9a07e">✦</span><span>Укладка</span><span style="color:#b9a07e">✦</span><span>Камуфляж седины</span><span style="color:#b9a07e">✦</span></span>
+  </div>
+</div>
+
+<section id="a-about" style="padding:130px 48px;display:grid;grid-template-columns:1.05fr .95fr;gap:80px;align-items:center;scroll-margin-top:80px">
+  <div>
+    <div data-rv="0" style="font-size:10px;letter-spacing:.42em;text-transform:uppercase;color:rgba(244,242,239,.45);margin-bottom:34px">О нас</div>
+    <h2 data-rv=".05" style="margin:0;font-family:Oswald;font-weight:300;font-size:clamp(34px,4.2vw,60px);line-height:1.1;letter-spacing:-.005em;text-wrap:pretty">BLACKSTONE — это место,<br>где стиль становится<br>частью твоего характера.</h2>
+    <p data-rv=".12" style="margin:38px 0 0;max-width:480px;font-size:15.5px;line-height:1.85;color:rgba(244,242,239,.62);text-wrap:pretty">Мы следим за деталями, ценим качество и создаём не просто стрижки, а уверенность в себе. Два мастера, один зал, никакой суеты — только работа с характером.</p>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:64px;border-top:1px solid rgba(255,255,255,.1)">
+      <div data-rv=".05" style="padding:26px 18px 0;border-right:1px solid rgba(255,255,255,.1)"><div data-count="500" style="font-family:Oswald;font-weight:400;font-size:40px;line-height:1">0</div><div style="font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:rgba(244,242,239,.45);margin-top:8px">Клиентов</div></div>
+      <div data-rv=".1" style="padding:26px 18px 0;border-right:1px solid rgba(255,255,255,.1)"><div data-count="2" style="font-family:Oswald;font-weight:400;font-size:40px;line-height:1">0</div><div style="font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:rgba(244,242,239,.45);margin-top:8px">Мастера</div></div>
+      <div data-rv=".15" style="padding:26px 18px 0;border-right:1px solid rgba(255,255,255,.1)"><div data-count="1" style="font-family:Oswald;font-weight:400;font-size:40px;line-height:1">0</div><div style="font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:rgba(244,242,239,.45);margin-top:8px">Локация</div></div>
+      <div data-rv=".2" style="padding:26px 18px 0"><div style="font-family:Oswald;font-weight:400;font-size:40px;line-height:1">12</div><div style="font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:rgba(244,242,239,.45);margin-top:8px">Часов в день</div></div>
+    </div>
+  </div>
+  <div data-rv=".1" data-rvx="translateY(48px) scale(.97)" style="position:relative;height:560px;filter:grayscale(1) contrast(1.08) brightness(.85)">
+    <image-slot id="a-about-img" shape="rect" placeholder="интерьер зала"></image-slot>
+  </div>
+</section>
+
+<section id="a-services" style="padding:0 48px 130px;scroll-margin-top:80px">
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.12);padding-bottom:28px;margin-bottom:0">
+    <h2 data-rv="0" style="margin:0;font-family:Oswald;font-weight:300;font-size:clamp(30px,3.6vw,50px);line-height:1;letter-spacing:.02em;text-transform:uppercase">Услуги</h2>
+    <div style="font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:rgba(244,242,239,.45)">Наведи на строку</div>
+  </div>
+  <sc-for list="{{ services }}" as="s" hint-placeholder-count="5">
+    <div onMouseEnter="{{ s.hover }}" style="border-bottom:1px solid rgba(255,255,255,.09);display:grid;grid-template-columns:70px 1fr auto;align-items:center;gap:28px;padding:0 8px;height:{{ s.h }};overflow:hidden;transition:height .55s cubic-bezier(.2,.8,.2,1),background .5s;background:{{ s.bg }}" data-rv="0">
+      <span style="font-family:Oswald;font-size:12px;letter-spacing:.2em;color:rgba(244,242,239,.35)">{{ s.num }}</span>
+      <span style="display:flex;align-items:center;gap:30px">
+        <span style="font-family:Oswald;font-weight:400;font-size:{{ s.size }};line-height:1;text-transform:uppercase;transition:font-size .55s cubic-bezier(.2,.8,.2,1),color .5s;color:{{ s.fg }}">{{ s.name }}</span>
+        <span style="font-size:13px;color:rgba(244,242,239,.45);opacity:{{ s.subOp }};transition:opacity .5s">{{ s.sub }}</span>
+      </span>
+      <span style="display:flex;align-items:center;gap:34px">
+        <span style="width:{{ s.thumbW }};height:78px;overflow:hidden;transition:width .55s cubic-bezier(.2,.8,.2,1);filter:grayscale(1) brightness(.9)"><image-slot id="{{ s.slot }}" shape="rect" placeholder="фото"></image-slot></span>
+        <span style="font-family:Oswald;font-weight:400;font-size:24px;letter-spacing:.02em;color:{{ s.priceFg }};transition:color .5s;min-width:132px;text-align:right">{{ s.price }}</span>
+      </span>
+    </div>
+  </sc-for>
+</section>
+
+<section id="a-masters" style="padding:0 48px 130px;scroll-margin-top:80px">
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:44px">
+    <h2 data-rv="0" style="margin:0;font-family:Oswald;font-weight:300;font-size:clamp(30px,3.6vw,50px);line-height:1;text-transform:uppercase">Мастера</h2>
+    <div style="font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:rgba(244,242,239,.45)">2 барбера · запись онлайн</div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px">
+    <div data-rv=".05" style="background:#101010;border:1px solid rgba(255,255,255,.08);display:grid;grid-template-columns:300px 1fr;transition:border-color .5s,transform .6s cubic-bezier(.2,.8,.2,1)" style-hover="border-color:rgba(185,160,126,.5);transform:translateY(-6px)">
+      <div style="position:relative;height:400px;filter:grayscale(1) contrast(1.05)"><image-slot id="a-m1" shape="rect" placeholder="Алексей — портрет"></image-slot></div>
+      <div style="padding:38px 34px;display:flex;flex-direction:column;justify-content:space-between">
+        <div>
+          <div style="font-family:Oswald;font-size:30px;font-weight:400;letter-spacing:.06em;text-transform:uppercase">Алексей</div>
+          <div style="font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#b9a07e;margin-top:10px">Барбер</div>
+          <p style="margin:26px 0 0;font-size:14px;line-height:1.8;color:rgba(244,242,239,.6)">Опыт работы более 5 лет. Специализируется на классических стрижках и работе с бородой.</p>
+        </div>
+        <div style="display:flex;gap:12px">
+          <a href="#a-contacts" style="width:38px;height:38px;border:1px solid rgba(255,255,255,.16);display:grid;place-items:center;font-size:11px;letter-spacing:.05em;color:rgba(244,242,239,.7);transition:all .35s" style-hover="background:#f4f2ef;color:#0a0a0a">IG</a>
+          <a href="#a-book" style="width:38px;height:38px;border:1px solid rgba(255,255,255,.16);display:grid;place-items:center;font-size:11px;color:rgba(244,242,239,.7);transition:all .35s" style-hover="background:#f4f2ef;color:#0a0a0a">WA</a>
+        </div>
+      </div>
+    </div>
+    <div data-rv=".14" style="background:#101010;border:1px solid rgba(255,255,255,.08);display:grid;grid-template-columns:300px 1fr;transition:border-color .5s,transform .6s cubic-bezier(.2,.8,.2,1)" style-hover="border-color:rgba(185,160,126,.5);transform:translateY(-6px)">
+      <div style="position:relative;height:400px;filter:grayscale(1) contrast(1.05)"><image-slot id="a-m2" shape="rect" placeholder="Арман — портрет"></image-slot></div>
+      <div style="padding:38px 34px;display:flex;flex-direction:column;justify-content:space-between">
+        <div>
+          <div style="font-family:Oswald;font-size:30px;font-weight:400;letter-spacing:.06em;text-transform:uppercase">Арман</div>
+          <div style="font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#b9a07e;margin-top:10px">Барбер</div>
+          <p style="margin:26px 0 0;font-size:14px;line-height:1.8;color:rgba(244,242,239,.6)">Опыт работы более 4 лет. Любит создавать стильные образы и работать с деталями.</p>
+        </div>
+        <div style="display:flex;gap:12px">
+          <a href="#a-contacts" style="width:38px;height:38px;border:1px solid rgba(255,255,255,.16);display:grid;place-items:center;font-size:11px;color:rgba(244,242,239,.7);transition:all .35s" style-hover="background:#f4f2ef;color:#0a0a0a">IG</a>
+          <a href="#a-book" style="width:38px;height:38px;border:1px solid rgba(255,255,255,.16);display:grid;place-items:center;font-size:11px;color:rgba(244,242,239,.7);transition:all .35s" style-hover="background:#f4f2ef;color:#0a0a0a">WA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="a-loc" style="padding:0 48px 130px;scroll-margin-top:80px">
+  <h2 data-rv="0" style="margin:0 0 44px;font-family:Oswald;font-weight:300;font-size:clamp(30px,3.6vw,50px);line-height:1;text-transform:uppercase">Наш путь развития</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px">
+    <div data-rv=".05" style="position:relative;border:1px solid rgba(255,255,255,.1);padding:44px;min-height:300px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;transition:border-color .5s" style-hover="border-color:rgba(185,160,126,.55)">
+      <div style="position:absolute;right:0;top:0;bottom:0;width:52%;opacity:.42;filter:grayscale(1)"><image-slot id="a-loc1" shape="rect" placeholder="фасад / вход"></image-slot></div>
+      <div style="position:relative">
+        <div style="font-family:Oswald;font-size:56px;font-weight:300;line-height:1;color:#b9a07e">01</div>
+        <div style="font-family:Oswald;font-size:22px;letter-spacing:.2em;margin-top:14px">BLACKSTONE</div>
+        <div style="font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:rgba(244,242,239,.5);margin-top:10px">Астана</div>
+        <div style="font-size:14px;color:rgba(244,242,239,.62);margin-top:22px;line-height:1.8">ул. Санжара Асфендиярова, 3<br>Режим работы: 10:00 — 22:00</div>
+      </div>
+      <div style="position:relative;display:flex;align-items:center;gap:12px;margin-top:28px">
+        <span style="width:7px;height:7px;border-radius:50%;background:#b9a07e;animation:breatheA 2.4s infinite"></span>
+        <span style="font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#b9a07e">Активно</span>
+      </div>
+    </div>
+    <div data-rv=".14" style="position:relative;border:1px dashed rgba(255,255,255,.14);padding:44px;min-height:300px;display:flex;flex-direction:column;justify-content:space-between;color:rgba(244,242,239,.42)">
+      <div>
+        <div style="font-family:Oswald;font-size:56px;font-weight:300;line-height:1">02</div>
+        <div style="font-family:Oswald;font-size:22px;letter-spacing:.2em;margin-top:14px">COMING SOON</div>
+        <div style="font-size:14px;margin-top:22px;line-height:1.8;max-width:330px">Вторая точка уже в проработке. Больше пространства, больше мастеров, тот же характер.</div>
+      </div>
+      <div style="border:1px solid rgba(255,255,255,.14);padding:11px 20px;align-self:flex-start;font-size:10px;letter-spacing:.28em;text-transform:uppercase">Скоро</div>
+    </div>
+  </div>
+</section>
+
+<section style="padding:0 0 130px">
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;padding:0 48px 32px">
+    <h2 data-rv="0" style="margin:0;font-family:Oswald;font-weight:300;font-size:clamp(30px,3.6vw,50px);line-height:1;text-transform:uppercase">Галерея</h2>
+    <div style="font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:rgba(244,242,239,.45)">Атмосфера Blackstone</div>
+  </div>
+  <div data-rv=".05" style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px">
+    <div style="position:relative;height:290px;overflow:hidden;filter:grayscale(1);transition:filter .6s"><image-slot id="a-g1" shape="rect" placeholder="зал"></image-slot></div>
+    <div style="position:relative;height:290px;overflow:hidden;filter:grayscale(1)"><image-slot id="a-g2" shape="rect" placeholder="процесс стрижки"></image-slot></div>
+    <div style="position:relative;height:290px;overflow:hidden;filter:grayscale(1)"><image-slot id="a-g3" shape="rect" placeholder="детали / инструменты"></image-slot></div>
+    <div style="position:relative;height:290px;overflow:hidden;filter:grayscale(1)"><image-slot id="a-g4" shape="rect" placeholder="результат"></image-slot></div>
+  </div>
+</section>
+
+<section id="a-book" style="padding:0 48px 130px;display:grid;grid-template-columns:1fr 1fr;gap:28px;scroll-margin-top:80px">
+  <div data-rv="0" style="border:1px solid rgba(255,255,255,.1);padding:44px">
+    <h3 style="margin:0 0 34px;font-family:Oswald;font-weight:400;font-size:22px;letter-spacing:.2em;text-transform:uppercase">Прайс-лист</h3>
+    <sc-for list="{{ priceList }}" as="p" hint-placeholder-count="6">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:17px 0;border-bottom:1px solid rgba(255,255,255,.07)">
+        <span style="font-size:15px;color:rgba(244,242,239,.78)">{{ p.name }}</span>
+        <span style="flex:1;height:1px;background:rgba(255,255,255,.09)"></span>
+        <span style="font-family:Oswald;font-size:18px;letter-spacing:.04em">{{ p.price }}</span>
+      </div>
+    </sc-for>
+    <div style="margin-top:32px;font-size:12px;color:rgba(244,242,239,.4);line-height:1.7">Цены указаны от. Итоговая стоимость зависит от длины волос и сложности работы.</div>
+  </div>
+  <div data-rv=".1" style="background:#101010;border:1px solid rgba(255,255,255,.1);padding:44px">
+    <h3 style="margin:0 0 8px;font-family:Oswald;font-weight:400;font-size:22px;letter-spacing:.2em;text-transform:uppercase">Записаться онлайн</h3>
+    <p style="margin:0 0 32px;font-size:13.5px;color:rgba(244,242,239,.5)">Выбери мастера, услугу и удобное время.</p>
+
+    <div style="font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:rgba(244,242,239,.45);margin-bottom:14px">Мастер</div>
+    <div style="display:flex;gap:10px;margin-bottom:30px">
+      <sc-for list="{{ masters }}" as="m" hint-placeholder-count="2">
+        <button onClick="{{ m.pick }}" style="flex:1;padding:15px 10px;background:{{ m.bg }};color:{{ m.fg }};border:1px solid {{ m.bd }};font-family:Manrope;font-size:12px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:all .35s">{{ m.name }}</button>
+      </sc-for>
+    </div>
+
+    <div style="font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:rgba(244,242,239,.45);margin-bottom:14px">Услуга</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:30px">
+      <sc-for list="{{ svcChips }}" as="c" hint-placeholder-count="5">
+        <button onClick="{{ c.pick }}" style="padding:11px 16px;background:{{ c.bg }};color:{{ c.fg }};border:1px solid {{ c.bd }};font-family:Manrope;font-size:11.5px;letter-spacing:.08em;cursor:pointer;transition:all .35s">{{ c.name }}</button>
+      </sc-for>
+    </div>
+
+    <div style="font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:rgba(244,242,239,.45);margin-bottom:14px">Дата</div>
+    <div style="display:flex;gap:8px;margin-bottom:30px">
+      <sc-for list="{{ days }}" as="d" hint-placeholder-count="5">
+        <button onClick="{{ d.pick }}" style="flex:1;padding:13px 0;background:{{ d.bg }};color:{{ d.fg }};border:1px solid {{ d.bd }};cursor:pointer;transition:all .35s;display:flex;flex-direction:column;align-items:center;gap:5px">
+          <span style="font-family:Oswald;font-size:19px;line-height:1">{{ d.n }}</span>
+          <span style="font-size:9px;letter-spacing:.2em;text-transform:uppercase;opacity:.65">{{ d.w }}</span>
+        </button>
+      </sc-for>
+    </div>
+
+    <div style="font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:rgba(244,242,239,.45);margin-bottom:14px">Время</div>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:34px">
+      <sc-for list="{{ times }}" as="t" hint-placeholder-count="10">
+        <button onClick="{{ t.pick }}" style="padding:12px 0;background:{{ t.bg }};color:{{ t.fg }};border:1px solid {{ t.bd }};font-family:Oswald;font-size:13px;letter-spacing:.06em;cursor:{{ t.cursor }};transition:all .3s;text-decoration:{{ t.dec }}">{{ t.label }}</button>
+      </sc-for>
+    </div>
+
+    <div style="border-top:1px solid rgba(255,255,255,.1);padding-top:26px;display:flex;align-items:center;justify-content:space-between;gap:20px">
+      <div>
+        <div style="font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:rgba(244,242,239,.45);margin-bottom:8px">Итого</div>
+        <div style="font-family:Oswald;font-size:26px;letter-spacing:.04em">{{ total }}</div>
+        <div style="font-size:12px;color:rgba(244,242,239,.5);margin-top:6px">{{ summary }}</div>
+      </div>
+      <button style="background:#f4f2ef;color:#0a0a0a;border:none;padding:19px 34px;font-family:Manrope;font-weight:600;font-size:11px;letter-spacing:.24em;text-transform:uppercase;cursor:pointer;transition:transform .4s cubic-bezier(.2,.8,.2,1)" style-hover="transform:translateY(-3px)">Продолжить</button>
+    </div>
+  </div>
+</section>
+
+<section id="a-contacts" style="border-top:1px solid rgba(255,255,255,.1);padding:80px 48px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:60px;scroll-margin-top:80px">
+  <div data-rv="0">
+    <div style="font-family:Oswald;font-weight:600;font-size:26px;letter-spacing:.22em">BLACKSTONE</div>
+    <div style="display:flex;align-items:center;gap:8px;margin-top:6px"><span style="width:30px;height:1px;background:rgba(255,255,255,.35)"></span><span style="font-size:8px;letter-spacing:.42em;color:rgba(244,242,239,.55)">BARBERSHOP</span></div>
+    <p style="margin:28px 0 0;font-size:14px;line-height:1.8;color:rgba(244,242,239,.5);max-width:280px">Больше, чем стрижка. Мужской стиль без компромиссов.</p>
+  </div>
+  <div data-rv=".06" style="display:flex;flex-direction:column;gap:16px;font-size:14px;color:rgba(244,242,239,.72)">
+    <div style="font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:rgba(244,242,239,.45);margin-bottom:6px">Контакты</div>
+    <div>Астана, ул. Санжара Асфендиярова, 3</div>
+    <a href="tel:+77020000000">+7 702 000 00 00</a>
+    <a href="https://instagram.com">@blackstone.barbershop</a>
+    <div>Ежедневно 10:00 — 22:00</div>
+  </div>
+  <div data-rv=".12" style="display:flex;flex-direction:column;justify-content:space-between;gap:24px">
+    <div style="font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:rgba(244,242,239,.45)">Быстрая связь</div>
+    <a href="https://wa.me/77020000000" style="border:1px solid rgba(255,255,255,.28);padding:19px 30px;text-align:center;font-size:11px;letter-spacing:.24em;text-transform:uppercase;transition:all .35s" style-hover="background:#f4f2ef;color:#0a0a0a;border-color:#f4f2ef">Написать в WhatsApp</a>
+  </div>
+</section>
+
+<footer style="border-top:1px solid rgba(255,255,255,.08);padding:28px 48px;display:flex;align-items:center;justify-content:space-between;font-size:11px;letter-spacing:.1em;color:rgba(244,242,239,.35)">
+  <span>© 2026 Blackstone Barbershop. Все права защищены.</span>
+  <span style="display:flex;gap:26px"><a href="#a-book" style="color:inherit">Политика конфиденциальности</a><a href="#a-book" style="color:inherit">Публичная оферта</a></span>
+</footer>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440}}">
+class Component extends DCLogic {
+  state = { hover: 0, master: 0, svc: 0, day: 22, time: '14:00' };
+
+  svcData = [
+    { num: '01', name: 'Мужская стрижка', sub: 'мытьё + укладка', price: 'от 6 000 ₸', p: 6000, slot: 'a-s1' },
+    { num: '02', name: 'Стрижка бороды', sub: 'моделирование формы', price: 'от 3 000 ₸', p: 3000, slot: 'a-s2' },
+    { num: '03', name: 'Комплекс', sub: 'стрижка + борода', price: 'от 8 000 ₸', p: 8000, slot: 'a-s3' },
+    { num: '04', name: 'Бритьё', sub: 'опасной бритвой', price: 'от 4 000 ₸', p: 4000, slot: 'a-s4' },
+    { num: '05', name: 'Укладка', sub: 'уход и фиксация', price: 'от 2 000 ₸', p: 2000, slot: 'a-s5' }
+  ];
+
+  renderVals() {
+    const st = this.state;
+    const pick = (k, v) => () => this.setState({ [k]: v });
+    const chip = (on) => ({
+      bg: on ? '#f4f2ef' : 'transparent',
+      fg: on ? '#0a0a0a' : 'rgba(244,242,239,.7)',
+      bd: on ? '#f4f2ef' : 'rgba(255,255,255,.16)'
+    });
+
+    const services = this.svcData.map((s, i) => {
+      const on = st.hover === i;
+      return Object.assign({}, s, {
+        hover: () => this.setState({ hover: i }),
+        h: on ? '132px' : '94px',
+        size: on ? '38px' : '28px',
+        bg: on ? 'rgba(255,255,255,.035)' : 'transparent',
+        fg: on ? '#f4f2ef' : 'rgba(244,242,239,.78)',
+        priceFg: on ? '#b9a07e' : 'rgba(244,242,239,.5)',
+        subOp: on ? 1 : 0,
+        thumbW: on ? '120px' : '0px'
+      });
+    });
+
+    const masterNames = ['Алексей', 'Арман'];
+    const masters = masterNames.map((name, i) => Object.assign({ name, pick: pick('master', i) }, chip(st.master === i)));
+    const svcChips = this.svcData.map((s, i) => Object.assign({ name: s.name, pick: pick('svc', i) }, chip(st.svc === i)));
+
+    const dayDefs = [{ n: 20, w: 'Пн' }, { n: 21, w: 'Вт' }, { n: 22, w: 'Ср' }, { n: 23, w: 'Чт' }, { n: 24, w: 'Пт' }];
+    const days = dayDefs.map(d => Object.assign({ n: d.n, w: d.w, pick: pick('day', d.n) }, chip(st.day === d.n)));
+
+    const slots = ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00'];
+    const busy = { '12:00': 1, '17:00': 1 };
+    const times = slots.map(label => {
+      const isBusy = !!busy[label];
+      const on = st.time === label && !isBusy;
+      return {
+        label,
+        pick: isBusy ? () => {} : pick('time', label),
+        bg: on ? '#b9a07e' : 'transparent',
+        fg: on ? '#0a0a0a' : (isBusy ? 'rgba(244,242,239,.25)' : 'rgba(244,242,239,.7)'),
+        bd: on ? '#b9a07e' : 'rgba(255,255,255,.14)',
+        cursor: isBusy ? 'not-allowed' : 'pointer',
+        dec: isBusy ? 'line-through' : 'none'
+      };
+    });
+
+    const s = this.svcData[st.svc];
+    return {
+      services, masters, svcChips, days, times,
+      total: s.p.toLocaleString('ru-RU') + ' ₸',
+      summary: masterNames[st.master] + ' · ' + s.name + ' · ' + st.day + ' авг, ' + st.time,
+      priceList: [
+        { name: 'Мужская стрижка', price: '6 000 ₸' },
+        { name: 'Стрижка бороды', price: '3 000 ₸' },
+        { name: 'Комплекс (стрижка + борода)', price: '8 000 ₸' },
+        { name: 'Бритьё опасной бритвой', price: '4 000 ₸' },
+        { name: 'Камуфляж седины', price: '5 000 ₸' },
+        { name: 'Укладка', price: '2 000 ₸' }
+      ]
+    };
+  }
+
+  componentDidMount() {
+    this.io = new IntersectionObserver((es) => {
+      es.forEach(e => {
+        if (!e.isIntersecting) return;
+        e.target.__shown = 1;
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'none';
+      });
+    }, { threshold: 0.14 });
+
+    this.cio = new IntersectionObserver((es) => {
+      es.forEach(e => {
+        if (!e.isIntersecting) return;
+        this.cio.unobserve(e.target);
+        const to = parseFloat(e.target.dataset.count) || 0;
+        const t0 = performance.now();
+        const tick = (now) => {
+          const k = Math.min(1, (now - t0) / 1400);
+          const eased = 1 - Math.pow(1 - k, 3);
+          e.target.textContent = Math.round(to * eased).toLocaleString('ru-RU') + (to >= 500 ? '+' : '');
+          if (k < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      });
+    }, { threshold: 0.5 });
+
+    this.scan();
+    this.onScroll = () => {
+      const doc = document.documentElement;
+      const p = doc.scrollTop / Math.max(1, doc.scrollHeight - doc.clientHeight);
+      const bar = document.getElementById('bsProg');
+      if (bar) bar.style.width = (p * 100).toFixed(2) + '%';
+      const nav = document.getElementById('bsNav');
+      if (nav) {
+        const past = doc.scrollTop > 60;
+        nav.style.padding = past ? '13px 48px' : '22px 48px';
+        nav.style.background = past ? 'rgba(10,10,10,.82)' : 'transparent';
+        nav.style.backdropFilter = past ? 'blur(14px)' : 'none';
+        nav.style.borderBottom = past ? '1px solid rgba(255,255,255,.08)' : '1px solid transparent';
+      }
+      const hero = document.getElementById('bsHeroImg');
+      if (hero) hero.style.transform = 'translateY(' + (doc.scrollTop * 0.16).toFixed(1) + 'px) scale(1.04)';
+    };
+    this.onMove = (e) => {
+      const hero = document.getElementById('bsHeroImg');
+      if (!hero || window.scrollY > window.innerHeight) return;
+      const x = (e.clientX / window.innerWidth - 0.5) * 22;
+      const y = (e.clientY / window.innerHeight - 0.5) * 16;
+      hero.style.transform = 'translate(' + (-x).toFixed(1) + 'px,' + (-y - window.scrollY * -0.16).toFixed(1) + 'px) scale(1.06)';
+    };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('mousemove', this.onMove);
+    this.onScroll();
+  }
+
+  componentDidUpdate() { this.scan(); }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('mousemove', this.onMove);
+    if (this.io) this.io.disconnect();
+    if (this.cio) this.cio.disconnect();
+  }
+
+  scan() {
+    const vh = window.innerHeight;
+    document.querySelectorAll('[data-rv]').forEach(el => {
+      const d = parseFloat(el.dataset.rv) || 0;
+      const tr = 'opacity .9s cubic-bezier(.2,.8,.2,1) ' + d + 's, transform 1.05s cubic-bezier(.2,.8,.2,1) ' + d + 's';
+      if (el.__shown) {
+        el.style.transition = tr;
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+        return;
+      }
+      if (!el.__rv) {
+        el.__rv = 1;
+        el.style.opacity = '0';
+        el.style.transform = el.dataset.rvx || 'translateY(30px)';
+        el.style.transition = tr;
+        this.io.observe(el);
+      }
+      const r = el.getBoundingClientRect();
+      if (r.top < vh * 0.94 && r.bottom > 0) {
+        el.__shown = 1;
+        requestAnimationFrame(() => { el.style.opacity = '1'; el.style.transform = 'none'; });
+      }
+    });
+    document.querySelectorAll('[data-count]').forEach(el => {
+      if (el.__c) return;
+      el.__c = 1;
+      this.cio.observe(el);
+    });
+  }
+}
+</script>
+</body>
+</html>

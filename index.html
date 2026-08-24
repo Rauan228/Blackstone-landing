@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blackstone Barbershop — Премиальный барбершоп в Астане</title>
+  <meta name="description" content="Blackstone — барбершоп для мужчин в Астане. Комплексная стрижка, борода, бритьё опасной бритвой. Ежедневно 10:00–22:00. Асфендиярова, 7.">
+  <meta property="og:title" content="Blackstone Barbershop — Премиальный барбершоп в Астане">
+  <meta property="og:description" content="Мужской стиль без компромиссов. Комплексная стрижка — 5 000 ₸. Запись онлайн.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;700&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Cursor Glow -->
+<div id="cursor-glow"></div>
+
+<!-- ===== NAVBAR ===== -->
+<header class="nav" id="navbar">
+  <div class="nav-logo">
+    <div class="nav-logo-title">BLACKSTONE</div>
+    <div class="nav-logo-sub">BARBERSHOP</div>
+  </div>
+  <nav class="nav-links" id="nav-links">
+    <a href="#services" data-kz="Қызметтер">Услуги</a>
+    <a href="#masters" data-kz="Шеберлер">Мастера</a>
+    <a href="#locations" data-kz="Локациялар">Локации</a>
+    <a href="#reviews" data-kz="Пікірлер">Отзывы</a>
+    <a href="#contacts" data-kz="Байланыс">Контакты</a>
+    <span class="nav-lang">
+      <button class="active" data-lang="ru">RU</button>
+      <button data-lang="kz">KZ</button>
+    </span>
+    <a href="#booking" class="nav-cta" data-kz="Жазылу">Записаться</a>
+  </nav>
+  <button class="burger-btn" id="burger-btn" aria-label="Меню">
+    <span class="burger-lines"><span></span><span></span><span></span></span>
+    <span class="burger-label" data-kz="Мәзір">Меню</span>
+  </button>
+</header>
+
+<!-- ===== MOBILE MENU ===== -->
+<div class="mobile-menu" id="mobile-menu">
+  <nav>
+    <a href="#services" data-kz="Қызметтер">Услуги</a>
+    <a href="#masters" data-kz="Шеберлер">Мастера</a>
+    <a href="#locations" data-kz="Локациялар">Локации</a>
+    <a href="#reviews" data-kz="Пікірлер">Отзывы</a>
+    <a href="#contacts" data-kz="Байланыс">Контакты</a>
+  </nav>
+  <div class="mobile-menu-footer">
+    <a href="#booking" class="mobile-menu-cta" data-kz="Жазылу">Записаться</a>
+    <div class="mobile-menu-bottom">
+      <a href="tel:+77020000000" style="color:inherit">+7 702 000 00 00</a>
+      <span class="nav-lang">
+        <button class="active" data-lang="ru">RU</button>
+        <button data-lang="kz">KZ</button>
+      </span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-status" data-reveal>
+      <span>EST. 2021</span>
+      <span class="sep"></span>
+      <span>Астана</span>
+    </div>
+    <h1 data-reveal data-delay=".04">ТВОЙ <span class="gold-text">СТИЛЬ</span><br>ТВОИ ПРАВИЛА</h1>
+    <p class="hero-desc" data-reveal data-delay=".1" data-kz="Астанадағы ер адамдар барбершопы. Шаш қию, сақал, ұстарамен қыру — асығыстық жоқ, тек нақты жұмыс.">Барбершоп для мужчин в Астане. Стрижка, борода, бритьё — без спешки и лишних слов, только точная работа.</p>
+    <div class="hero-actions" data-reveal data-delay=".16">
+      <a href="#booking" class="btn-primary" data-kz="Жазылу">Записаться</a>
+      <a href="#services" class="hero-link">
+        <span data-kz="Қызметтер мен бағалар">Услуги и цены</span><span>↓</span>
+      </a>
+    </div>
+    <div class="hero-stats" data-reveal data-delay=".22">
+      <span><span class="stat-num">2</span><span data-kz="шебер">мастера</span></span>
+      <span><span class="stat-num">5</span><span data-kz="жылдан астам тәжірибе">лет опыта</span></span>
+      <span><span class="stat-num">10—22</span><span data-kz="күн сайын">ежедневно</span></span>
+    </div>
+  </div>
+  <div class="hero-image" id="hero-image">
+    <img src="images/hero_barbershop.jpg" alt="Blackstone Barbershop — атмосфера" loading="eager">
+  </div>
+</section>
+
+<!-- ===== MARQUEE ===== -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span><span>Санжара Асфендиярова, 7</span><span class="sep">·</span><span>10:00 — 22:00</span><span class="sep">·</span><span data-kz="Онлайн жазылу">Запись онлайн</span><span class="sep">·</span><span data-kz="Шаш қиюдан да көп">Больше, чем стрижка</span><span class="sep">·</span></span>
+    <span><span>Санжара Асфендиярова, 7</span><span class="sep">·</span><span>10:00 — 22:00</span><span class="sep">·</span><span data-kz="Онлайн жазылу">Запись онлайн</span><span class="sep">·</span><span data-kz="Шаш қиюдан да көп">Больше, чем стрижка</span><span class="sep">·</span></span>
+  </div>
+</div>
+
+<!-- ===== SERVICES ===== -->
+<section class="services" id="services">
+  <div class="services-header">
+    <div>
+      <div class="section-label" data-kz="БІРДЕН-БІР ПАКЕТ">ЕДИНЫЙ ПАКЕТ</div>
+      <h2 class="section-title" data-reveal data-kz="КОМПЛЕКСНАЯ СТРИЖКА">КОМПЛЕКСНАЯ СТРИЖКА</h2>
+    </div>
+    <span class="services-note" data-reveal data-delay=".05" data-kz="Барлығы кіреді — 5 000 ₸">Всё включено за 5 000 ₸</span>
+  </div>
+
+  <!-- Featured 5,000 KZT Package Card -->
+  <div class="service-hero-card" data-reveal>
+    <div class="service-hero-main">
+      <h3 class="service-hero-title" data-kz="Комплекстік ерлер қиюы">Комплексная мужская стрижка</h3>
+      <p class="service-hero-desc" data-kz="Сізге қызметтерді бөлек таңдаудың керегі жоқ. Blackstone-да барлық қажетті күтім 5 000 ₸ біртұтас кешенге кіреді.">Тебе не нужно выбирать услуги по отдельности. В Blackstone полный уход и стиль уже входят в единый комплекс за 5 000 ₸.</p>
+
+      <ol class="service-steps">
+        <li class="step-item">
+          <span class="step-num">01</span>
+          <div>
+            <div class="step-title" data-kz="Шаш қию">Мужская стрижка</div>
+            <div class="step-sub" data-kz="Классика, фейд, уақытша стиль">Классика, фейд или индивидуальный стиль</div>
+          </div>
+        </li>
+        <li class="step-item">
+          <span class="step-num">02</span>
+          <div>
+            <div class="step-title" data-kz="Бас жуу">Мытьё головы</div>
+            <div class="step-sub" data-kz="Қиюға дейін және кейін кәсіби шампуньмен">До и после стрижки с массажем</div>
+          </div>
+        </li>
+        <li class="step-item">
+          <span class="step-num">03</span>
+          <div>
+            <div class="step-title" data-kz="Сақал мен контур">Оформление бороды</div>
+            <div class="step-sub" data-kz="Модельдеу, контур, ұстара">Стрижка бороды, усов и контуринг</div>
+          </div>
+        </li>
+        <li class="step-item">
+          <span class="step-num">04</span>
+          <div>
+            <div class="step-title" data-kz="Премиум сәндеу">Премиум стайлинг</div>
+            <div class="step-sub" data-kz="Кәсіби құралдармен бекіту">Укладка топовой косметикой</div>
+          </div>
+        </li>
+      </ol>
+
+      <div class="service-hero-action">
+        <div class="service-hero-price">
+          <span class="price-val">5 000 ₸</span>
+          <span class="price-lbl" data-kz="толық кешен үшін">за полный комплекс</span>
+        </div>
+        <a href="#booking" class="btn-primary btn-hero-book" data-kz="Жазылу — 5 000 ₸">Записаться за 5 000 ₸</a>
+      </div>
+    </div>
+
+    <div class="service-hero-media">
+      <img src="images/service_haircut.jpg" alt="Комплексная стрижка Blackstone" loading="lazy">
+      <div class="service-media-overlay">
+        <div class="media-stat">
+          <span class="stat-num">60</span>
+          <span class="stat-lbl" data-kz="минут уақыт">минут визита</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ===== MASTERS ===== -->
+<section class="masters" id="masters">
+  <div class="masters-title">
+    <h2 class="section-title" data-reveal data-kz="ШЕБЕРЛЕР">МАСТЕРА</h2>
+  </div>
+  <div class="masters-grid">
+
+    <div class="master-card" data-reveal data-delay=".04">
+      <img src="images/master_alexey.jpg" alt="Алексей — барбер Blackstone" loading="lazy">
+      <div class="master-overlay"></div>
+      <div class="master-info">
+        <div class="master-name">Алексей</div>
+        <div class="master-role">
+          <span data-kz="Барбер">Барбер</span>
+          <span class="line"></span>
+          <span data-kz="5 жылдан астам">5+ лет</span>
+        </div>
+        <p class="master-desc" data-kz="Классикалық шаш қию және сақалмен жұмыс. Пішінді ұстап тұратын нақты сызықтар.">Классические стрижки и работа с бородой. Точные линии, которые держат форму.</p>
+        <div class="master-links">
+          <a href="#booking" data-kz="Шеберге жазылу">Записаться к нему</a>
+          <a href="https://instagram.com" class="dim">Instagram</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="master-card" data-reveal data-delay=".1">
+      <img src="images/master_arman.jpg" alt="Арман — барбер Blackstone" loading="lazy">
+      <div class="master-overlay"></div>
+      <div class="master-info">
+        <div class="master-name">Арман</div>
+        <div class="master-role">
+          <span data-kz="Барбер">Барбер</span>
+          <span class="line"></span>
+          <span data-kz="4 жылдан астам">4+ года</span>
+        </div>
+        <p class="master-desc" data-kz="Заманауи бейнелер мен детальдар. Фейд және мінезді сәндеу.">Современные образы и детали. Фейды и укладка с характером.</p>
+        <div class="master-links">
+          <a href="#booking" data-kz="Шеберге жазылу">Записаться к нему</a>
+          <a href="https://instagram.com" class="dim">Instagram</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== LOCATIONS ===== -->
+<section class="locations" id="locations">
+  <h2 class="section-title" data-reveal style="margin-bottom:40px" data-kz="ЛОКАЦИЯЛАР">ЛОКАЦИИ</h2>
+  <div class="locations-grid">
+
+    <div class="loc-main" data-reveal data-delay=".04">
+      <img src="images/interior_wide.jpg" alt="Blackstone — интерьер" loading="lazy">
+      <div class="loc-main-overlay"></div>
+      <div class="loc-main-info">
+        <div class="loc-label">01 · <span data-kz="Ашық">Открыто</span></div>
+        <div class="loc-name">BLACKSTONE</div>
+        <div class="loc-address">Астана, Санжара Асфендиярова, 7</div>
+        <div class="loc-hours">10:00 — 22:00</div>
+        <a href="#map" class="loc-link" data-kz="Картадан көру">Смотреть на карте</a>
+      </div>
+    </div>
+
+    <div class="loc-soon" data-reveal data-delay=".1">
+      <div>
+        <div class="loc-soon-num">02 · <span data-kz="Жақында">Скоро</span></div>
+        <div class="loc-soon-title" data-kz="Екінші нүкте">Вторая точка</div>
+        <p class="loc-soon-desc" data-kz="Астанада екінші кеңістік дайындалып жатыр. Ашылу туралы Instagram-да айтамыз.">Готовим второе пространство в Астане. О запуске расскажем в Instagram.</p>
+      </div>
+      <a href="https://instagram.com" class="loc-soon-link" data-kz="Instagram-да бақылау">Следить в Instagram</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== GALLERY ===== -->
+<section class="gallery">
+  <div class="gallery-header">
+    <h2 class="section-title" data-reveal>АТМОСФЕРА</h2>
+    <span class="gallery-label" data-kz="Галерея">Галерея</span>
+  </div>
+  <div class="gallery-grid" data-reveal data-delay=".04">
+    <div><img src="images/interior_wide.jpg" alt="Зал Blackstone" loading="lazy"></div>
+    <div><img src="images/service_haircut.jpg" alt="Процесс стрижки" loading="lazy"></div>
+    <div><img src="images/gallery_tools.jpg" alt="Инструменты барбера" loading="lazy"></div>
+    <div><img src="images/service_beard.jpg" alt="Работа с бородой" loading="lazy"></div>
+    <div><img src="images/service_shaving.jpg" alt="Бритьё опасной бритвой" loading="lazy"></div>
+  </div>
+</section>
+
+<!-- ===== REVIEWS ===== -->
+<section class="reviews" id="reviews">
+  <div class="reviews-header">
+    <h2 class="section-title" data-reveal data-kz="ПІКІРЛЕР">ОТЗЫВЫ</h2>
+    <span class="reviews-rating" data-reveal data-delay=".04">4.9 · 2GIS · Яндекс</span>
+  </div>
+  <div class="reviews-grid">
+
+    <div class="review-card" data-reveal>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text" data-kz="Алексей мен қалағандай, тіпті одан да жақсы жасады. Тыныш, асығыстық жоқ.">Алексей сделал ровно то, что я хотел, и даже лучше. Спокойно, без спешки.</p>
+      <div class="review-author">Данияр — 2GIS</div>
+    </div>
+
+    <div class="review-card" data-reveal>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text" data-kz="Арманға жарты жылдан бері келемін. Сақалмен таза жұмыс және күтім бойынша нақты кеңес.">Хожу к Арману полгода. Чистая работа с бородой и понятный совет по уходу.</p>
+      <div class="review-author">Ерлан — Яндекс</div>
+    </div>
+
+    <div class="review-card" data-reveal>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text" data-kz="Жеке артықшылығы — ұстарамен қыру. Қалада мұндай сапа аз.">Отдельный плюс — бритьё опасной бритвой. Такого качества в городе мало.</p>
+      <div class="review-author">Тимур — 2GIS</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== BOOKING ===== -->
+<section class="booking" id="booking">
+
+  <div class="price-list" data-reveal>
+    <h3 class="price-title" data-kz="БАҒА ТІЗІМІ">ПРАЙС-ЛИСТ</h3>
+    <div class="price-row price-row-highlight">
+      <span class="price-name" data-kz="Комплекстік ерлер қиюы (Барлығы кіреді)">Комплексная мужская стрижка</span>
+      <span class="price-value">5 000 ₸</span>
+    </div>
+    <div class="price-row price-row-sub">
+      <span class="price-name" data-kz="Шаш қию (классика / фейд)">Мужская стрижка (классика / фейд)</span>
+      <span class="price-sub-val" data-kz="кіреді">включено</span>
+    </div>
+    <div class="price-row price-row-sub">
+      <span class="price-name" data-kz="Бас жуу (дейін және кейін)">Мытьё головы (до и после)</span>
+      <span class="price-sub-val" data-kz="кіреді">включено</span>
+    </div>
+    <div class="price-row price-row-sub">
+      <span class="price-name" data-kz="Сақал мен уса модельдеу">Оформление бороды и усов</span>
+      <span class="price-sub-val" data-kz="кіреді">включено</span>
+    </div>
+    <div class="price-row price-row-sub">
+      <span class="price-name" data-kz="Премиум сәндеу және стайлинг">Укладка премиум косметикой</span>
+      <span class="price-sub-val" data-kz="кіреді">включено</span>
+    </div>
+    <div class="price-note" data-kz="Тіркелген баға 5 000 ₸. Ешқандай жасырын төлемдер жоқ.">Фиксированная цена 5 000 ₸ за весь визит. Никаких скрытых доплат.</div>
+  </div>
+
+  <div class="book-form" data-reveal data-delay=".06">
+    <h3 class="book-title" data-kz="ЖАЗЫЛУ">ЗАПИСЬ</h3>
+    <p class="book-subtitle" data-kz="Төрт қадам — және сіз кестедесіз.">Четыре шага — и ты в расписании.</p>
+
+    <div class="book-two">
+      <div>
+        <div class="book-label" data-kz="Шебер">Мастер</div>
+        <div class="book-tabs" id="master-tabs">
+          <button class="book-tab active" data-master="0">Алексей</button>
+          <button class="book-tab" data-master="1">Арман</button>
+        </div>
+      </div>
+      <div>
+        <div class="book-label" data-kz="Қызмет">Услуга</div>
+        <div class="book-static" id="svc-static" data-kz="Комплекстік қию — 5 000 ₸">Комплексная стрижка — 5 000 ₸</div>
+      </div>
+    </div>
+
+    <div class="book-label" data-kz="Күні">Дата</div>
+    <div class="book-days" id="day-tabs"></div>
+
+    <div class="book-label" data-kz="Уақыты">Время</div>
+    <div class="book-times" id="time-slots"></div>
+
+    <div class="book-footer">
+      <div>
+        <div class="book-summary" id="book-summary"></div>
+        <div class="book-total" id="book-total">5 000 ₸</div>
+      </div>
+      <button class="btn-gold" data-kz="Жазылуды растау" id="book-confirm">Подтвердить запись</button>
+    </div>
+  </div>
+
+</section>
+
+<!-- ===== MAP ===== -->
+<section class="map-section" id="map">
+  <div class="map-container">
+    <iframe src="https://yandex.ru/map-widget/v1/?ll=71.379266%2C51.134445&z=16&pt=71.379266%2C51.134445%2Cpm2rdm&lang=ru_RU" allowfullscreen loading="lazy"></iframe>
+  </div>
+</section>
+
+<!-- ===== CONTACTS ===== -->
+<section class="contacts" id="contacts">
+  <div data-reveal>
+    <div class="contacts-brand">BLACKSTONE</div>
+    <div class="contacts-slogan" data-kz="Шаш қиюдан да көп">Больше, чем стрижка</div>
+    <p class="contacts-desc" data-kz="Ерлер стилі және детальға назар — күн сайын 10:00-ден 22:00-ге дейін.">Мужской стиль и внимание к деталям — каждый день с 10:00 до 22:00.</p>
+  </div>
+  <div data-reveal data-delay=".05">
+    <div class="contacts-label" data-kz="Байланыс">Контакты</div>
+    <div class="contacts-info">
+      <div>Астана, Санжара Асфендиярова, 7</div>
+      <a href="tel:+77020000000">+7 702 000 00 00</a>
+      <a href="https://instagram.com">@blackstone.barbershop</a>
+      <div data-kz="Күн сайын 10:00 — 22:00">Ежедневно 10:00 — 22:00</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MOBILE FLOATING ACTION BAR ===== -->
+<div class="mobile-float-bar" id="mobile-float-bar">
+  <a href="tel:+77020000000" class="float-btn float-call" aria-label="Позвонить">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+  </a>
+  <a href="https://wa.me/77020000000" target="_blank" class="float-btn float-wa" aria-label="WhatsApp">
+    <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.205 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+  </a>
+  <a href="#booking" class="float-btn float-book" data-kz="Жазылу">
+    <span>Записаться</span>
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </a>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <span>© 2026 Blackstone Barbershop</span>
+  <span class="footer-links">
+    <a href="#" data-kz="Құпиялылық саясаты">Политика конфиденциальности</a>
+    <a href="#" data-kz="Жария оферта">Публичная оферта</a>
+  </span>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

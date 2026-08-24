@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;700&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+body{margin:0;background:#080706;color:#efe9e1;font-family:"Golos Text",system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:#efe9e1;text-decoration:none}
+a:hover{color:#d4a95f}
+::selection{background:#d4a95f;color:#080706}
+@keyframes mqB2{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes dotB2{0%,100%{opacity:.3}50%{opacity:1}}
+@keyframes lineB2{0%{transform:scaleX(0)}100%{transform:scaleX(1)}}
+@keyframes shineB2{0%{background-position:-220% 0}100%{background-position:220% 0}}
+[data-m="svc"]{grid-template-columns:repeat(5,minmax(0,1fr)) !important}
+@media (max-width:1240px){
+  [data-m="svc"]{grid-template-columns:repeat(3,minmax(0,1fr)) !important;border-top:none !important}
+  [data-m="svc-item"]{border-top:1px solid rgba(255,255,255,.1)}
+  [data-m="svc-item"]:nth-child(3n){border-right:none !important}
+}
+@media (max-width:900px){
+  [data-m="svc"]{grid-template-columns:repeat(2,minmax(0,1fr)) !important}
+  [data-m="svc-item"]{padding:22px 20px 26px 0 !important}
+  [data-m="svc-item"]:nth-child(2n){border-right:none !important;padding-right:0 !important}
+  [data-m="svc-item"]:nth-child(3n){border-right:1px solid rgba(255,255,255,.09) !important}
+  [data-m="svc-item"] [data-m="svc-img"]{height:170px !important;margin-right:0 !important}
+  [data-m="svc-item"] [data-m="svc-inner"],[data-m="svc-item"] [data-m="svc-meta"]{padding-right:0 !important}
+  [data-m="svc-item"] [data-m="svc-inner"] > div:first-child{font-size:16px !important}
+}
+@media (max-width:560px){
+  [data-m="svc"]{grid-template-columns:1fr !important}
+  [data-m="svc-item"],[data-m="svc-item"]:nth-child(3n){border-right:none !important;padding:22px 0 26px !important}
+  [data-m="svc-item"] [data-m="svc-img"]{height:210px !important}
+}
+@media (max-width:900px){
+  [data-m="burger"]{display:flex !important}
+  [data-m="navlinks"]{display:none !important}
+  [data-m="nav"]{padding:16px 20px !important}
+  [data-m="glow"]{display:none !important}
+  [data-m="hero"]{grid-template-columns:1fr !important;min-height:0 !important}
+  [data-m="hero-copy"]{padding:112px 20px 44px !important}
+  [data-m="hero-img"]{height:56vh !important;order:2}
+  [data-m="hero-h1"]{font-size:42px !important}
+  [data-m="hero-stats"]{margin-top:42px !important;gap:22px !important;flex-wrap:wrap}
+  [data-m="pad"]{padding-left:20px !important;padding-right:20px !important}
+  [data-m="pad-top"]{padding-top:64px !important}
+  [data-m="pad-bot"]{padding-bottom:64px !important}
+  [data-m="two"]{grid-template-columns:1fr !important}
+  [data-m="master"]{height:520px !important}
+  [data-m="master-copy"]{left:22px !important;right:22px !important;bottom:28px !important}
+  [data-m="loc-card"]{height:340px !important}
+  [data-m="loc-copy"]{left:22px !important;right:22px !important}
+  [data-m="loc-side"]{height:auto !important;padding:30px 22px !important;gap:26px;display:flex}
+  [data-m="gal"]{grid-template-columns:1fr 1fr !important;grid-template-rows:150px 150px 150px !important}
+  [data-m="gal"] > :first-child{grid-row:span 2 !important}
+  [data-m="rev"]{grid-template-columns:1fr !important}
+  [data-m="rev-item"]{padding:26px 0 !important;border-right:none !important;border-bottom:1px solid rgba(255,255,255,.08)}
+  [data-m="rev-item"] p{font-size:16px !important}
+  [data-m="book"]{grid-template-columns:1fr !important;gap:2px !important}
+  [data-m="book-pane"]{padding:32px 22px !important}
+  [data-m="book-two"]{grid-template-columns:1fr !important;gap:22px !important}
+  [data-m="book-cta"]{flex-direction:column;align-items:stretch !important;gap:22px !important}
+  [data-m="book-cta"] button{width:100%}
+  [data-m="cont"]{grid-template-columns:1fr !important;gap:38px !important;padding:56px 20px !important}
+  [data-m="foot"]{flex-direction:column;align-items:flex-start !important;gap:14px;padding:22px 20px !important}
+  [data-m="foot"] span{flex-wrap:wrap;gap:16px !important}
+  [data-m="mark"]{font-size:16px !important}
+  h2{font-size:32px !important}
+}
+</style>
+</helmet>
+
+<div id="b2Glow" data-m="glow" style="position:fixed;top:0;left:0;width:460px;height:460px;margin:-230px 0 0 -230px;border-radius:50%;background:radial-gradient(circle,rgba(212,169,95,.1),transparent 62%);pointer-events:none;z-index:5;transition:transform .3s cubic-bezier(.2,.8,.2,1)"></div>
+
+<header id="b2Nav" data-m="nav" style="position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;gap:28px;padding:22px 44px;transition:all .45s cubic-bezier(.2,.8,.2,1)">
+  <div style="flex:none">
+    <div style="font-family:Unbounded;font-weight:600;font-size:17px;letter-spacing:.16em;line-height:1">BLACKSTONE</div>
+    <div style="font-size:7px;letter-spacing:.5em;color:rgba(212,169,95,.75);margin-top:5px">BARBERSHOP</div>
+  </div>
+  <nav data-m="navlinks" style="display:flex;align-items:center;gap:26px;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;flex-wrap:nowrap">
+    <a href="#b2-svc" style="color:rgba(239,233,225,.62)" style-hover="color:#efe9e1" data-kz="Қызметтер">Услуги</a>
+    <a href="#b2-mast" style="color:rgba(239,233,225,.62)" style-hover="color:#efe9e1" data-kz="Шеберлер">Мастера</a>
+    <a href="#b2-loc" style="color:rgba(239,233,225,.62)" style-hover="color:#efe9e1" data-kz="Локациялар">Локации</a>
+    <a href="#b2-rev" style="color:rgba(239,233,225,.62)" style-hover="color:#efe9e1" data-kz="Пікірлер">Отзывы</a>
+    <a href="#b2-cont" style="color:rgba(239,233,225,.62)" style-hover="color:#efe9e1" data-kz="Байланыс">Контакты</a>
+    <span style="display:flex;align-items:center;gap:8px;font-size:10px;color:rgba(239,233,225,.35)">
+      <sc-for list="{{ langs }}" as="l" hint-placeholder-count="2">
+        <button onClick="{{ l.pick }}" style="background:none;border:none;padding:0;font-family:'Golos Text';font-size:10px;font-weight:600;letter-spacing:.14em;cursor:pointer;color:{{ l.fg }};border-bottom:1px solid {{ l.bd }};transition:all .3s">{{ l.code }}</button>
+      </sc-for>
+    </span>
+    <a href="#b2-book" style="border:1px solid #d4a95f;color:#d4a95f;padding:13px 24px;font-weight:600;letter-spacing:.2em;transition:background .4s cubic-bezier(.2,.8,.2,1),color .4s" style-hover="background:#d4a95f;color:#080706" data-kz="Жазылу">Записаться</a>
+  </nav>
+  <button onClick="{{ toggleMenu }}" data-m="burger" style="display:none;align-items:center;gap:11px;background:none;border:none;padding:0;cursor:pointer;color:#efe9e1;font-family:'Golos Text';font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase">
+    <span style="display:flex;flex-direction:column;gap:5px;width:22px">
+      <span style="height:1px;background:#d4a95f;transform:{{ burgerTop }};transition:transform .4s cubic-bezier(.2,.8,.2,1)"></span>
+      <span style="height:1px;background:#d4a95f;opacity:{{ burgerMidOp }};transition:opacity .3s"></span>
+      <span style="height:1px;background:#d4a95f;transform:{{ burgerBot }};transition:transform .4s cubic-bezier(.2,.8,.2,1)"></span>
+    </span>
+    <span>{{ burgerLabel }}</span>
+  </button>
+</header>
+
+<div style="position:fixed;inset:0;z-index:55;background:rgba(8,7,6,.97);backdrop-filter:blur(6px);padding:96px 24px 32px;display:flex;flex-direction:column;justify-content:space-between;opacity:{{ menuOp }};pointer-events:{{ menuPe }};transform:{{ menuTf }};transition:opacity .45s cubic-bezier(.2,.8,.2,1),transform .5s cubic-bezier(.2,.8,.2,1)">
+  <nav style="display:flex;flex-direction:column;gap:2px">
+    <sc-for list="{{ menuLinks }}" as="l" hint-placeholder-count="5">
+      <a href="{{ l.href }}" onClick="{{ closeMenu }}" style="font-family:Unbounded;font-weight:400;font-size:26px;letter-spacing:.01em;text-transform:uppercase;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.08)">{{ l.label }}</a>
+    </sc-for>
+  </nav>
+  <div style="display:flex;flex-direction:column;gap:22px">
+    <a href="#b2-book" onClick="{{ closeMenu }}" style="border:1px solid #d4a95f;color:#d4a95f;padding:19px 0;text-align:center;font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase">{{ menuCta }}</a>
+    <div style="display:flex;align-items:center;justify-content:space-between;font-size:12px;color:rgba(239,233,225,.45)">
+      <a href="tel:+77020000000" style="color:inherit">+7 702 000 00 00</a>
+      <span style="display:flex;gap:14px">
+        <sc-for list="{{ langs }}" as="l" hint-placeholder-count="2">
+          <button onClick="{{ l.pick }}" style="background:none;border:none;padding:0;font-family:'Golos Text';font-size:11px;font-weight:600;letter-spacing:.14em;cursor:pointer;color:{{ l.fg }};border-bottom:1px solid {{ l.bd }}">{{ l.code }}</button>
+        </sc-for>
+      </span>
+    </div>
+  </div>
+</div>
+
+<section data-m="hero" style="position:relative;min-height:100vh;display:grid;grid-template-columns:1.1fr 1fr;background:#0b0a09">
+  <div data-m="hero-copy" style="position:relative;z-index:2;padding:170px 0 64px 44px;display:flex;flex-direction:column;justify-content:center">
+    <div data-rv="0" style="display:flex;align-items:center;gap:12px;margin-bottom:28px;font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:rgba(239,233,225,.5)">
+      <span style="width:7px;height:7px;border-radius:50%;background:{{ statusColor }};animation:dotB2 2.4s infinite"></span>
+      <span>{{ statusText }}</span>
+      <span style="width:1px;height:11px;background:rgba(255,255,255,.18)"></span>
+      <span>Астана</span>
+    </div>
+    <h1 data-rv=".04" data-m="hero-h1" style="margin:0;font-family:Unbounded;font-weight:700;font-size:clamp(42px,5.6vw,80px);line-height:1.03;letter-spacing:-.025em">ТВОЙ <span style="background:linear-gradient(100deg,#f0d9a8,#d4a95f 40%,#8a5f2a 75%,#e6c68e);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;background-size:220% 100%;animation:shineB2 6s linear infinite">СТИЛЬ</span><br>ТВОИ ПРАВИЛА</h1>
+    <p data-rv=".1" style="margin:30px 0 44px;max-width:400px;font-size:16px;line-height:1.8;color:rgba(239,233,225,.62);text-wrap:pretty" data-kz="Астанадағы ер адамдар барбершопы. Шаш қию, сақал, ұстарамен қыру — асығыстық жоқ, тек нақты жұмыс.">Барбершоп для мужчин в Астане. Стрижка, борода, бритьё — без спешки и лишних слов, только точная работа.</p>
+    <div data-rv=".16" style="display:flex;align-items:center;gap:30px">
+      <a href="#b2-book" style="position:relative;border:1px solid #d4a95f;color:#d4a95f;padding:19px 36px;font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;transition:background .45s cubic-bezier(.2,.8,.2,1),color .45s" style-hover="background:#d4a95f;color:#080706" data-kz="Жазылу">Записаться</a>
+      <a href="#b2-svc" style="display:flex;align-items:baseline;gap:10px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(239,233,225,.62);border-bottom:1px solid rgba(255,255,255,.16);padding-bottom:7px;transition:color .35s,border-color .35s" style-hover="color:#d4a95f;border-color:#d4a95f">
+        <span data-kz="Қызметтер мен бағалар">Услуги и цены</span><span>↓</span>
+      </a>
+    </div>
+    <div data-rv=".22" data-m="hero-stats" style="display:flex;gap:44px;margin-top:78px;padding-top:26px;border-top:1px solid rgba(255,255,255,.09);font-size:12px;color:rgba(239,233,225,.45)">
+      <span><span style="color:#d4a95f;font-family:Unbounded;font-size:15px;margin-right:9px">2</span><span data-kz="шебер">мастера</span></span>
+      <span><span style="color:#d4a95f;font-family:Unbounded;font-size:15px;margin-right:9px">5</span><span data-kz="жылдан астам тәжірибе">лет опыта</span></span>
+      <span><span style="color:#d4a95f;font-family:Unbounded;font-size:15px;margin-right:9px">10—22</span><span data-kz="күн сайын">ежедневно</span></span>
+    </div>
+  </div>
+  <div id="b2Hero" data-m="hero-img" style="position:relative;overflow:hidden;transition:transform .9s cubic-bezier(.2,.8,.2,1)">
+    <image-slot id="b2-hero" shape="rect" placeholder="hero"></image-slot>
+    <div style="position:absolute;inset:0;background:linear-gradient(90deg,#0b0a09 0%,rgba(11,10,9,.5) 26%,rgba(11,10,9,.05) 62%,rgba(11,10,9,.6) 100%);pointer-events:none"></div>
+  </div>
+</section>
+
+<div style="overflow:hidden;border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);padding:16px 0;background:#0a0908">
+  <div style="display:flex;width:max-content;animation:mqB2 24s linear infinite;font-family:Unbounded;font-weight:300;font-size:22px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;color:rgba(239,233,225,.28)" data-m="mark">
+    <span style="display:flex;gap:38px;padding-right:38px"><span>Санжара Асфендиярова, 3</span><span style="color:#d4a95f">·</span><span>10:00 — 22:00</span><span style="color:#d4a95f">·</span><span>Запись онлайн</span><span style="color:#d4a95f">·</span></span>
+    <span style="display:flex;gap:38px;padding-right:38px"><span>Санжара Асфендиярова, 3</span><span style="color:#d4a95f">·</span><span>10:00 — 22:00</span><span style="color:#d4a95f">·</span><span>Запись онлайн</span><span style="color:#d4a95f">·</span></span>
+  </div>
+</div>
+
+<section id="b2-svc" data-m="pad" style="padding:104px 44px;scroll-margin-top:76px">
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:44px">
+    <h2 data-rv="0" style="margin:0;font-family:Unbounded;font-weight:600;font-size:clamp(28px,3.6vw,48px);line-height:1.06;letter-spacing:-.015em" data-kz="ҚЫЗМЕТТЕР">УСЛУГИ</h2>
+    <span data-rv=".05" style="font-size:11px;line-height:1.7;color:rgba(239,233,225,.4);max-width:250px" data-kz="Барлық бағалар «бастап» көрсетілген">Все цены указаны «от»</span>
+  </div>
+  <div data-rv=".05" data-m="svc" style="display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid rgba(255,255,255,.12)">
+    <sc-for list="{{ strip }}" as="s" hint-placeholder-count="5">
+      <a href="#b2-book" data-m="svc-item" style="display:block;padding:26px 24px 30px 0;border-right:1px solid rgba(255,255,255,.09);color:inherit">
+        <div data-m="svc-meta" style="display:flex;align-items:baseline;justify-content:space-between;padding-right:22px">
+          <span style="font-family:Unbounded;font-size:10.5px;letter-spacing:.16em;color:rgba(239,233,225,.35)">{{ s.num }}</span>
+          <span style="font-size:11px;letter-spacing:.1em;color:rgba(239,233,225,.35)">{{ s.dur }}</span>
+        </div>
+        <div data-m="svc-img" style="position:relative;height:230px;margin:20px 22px 0 0;overflow:hidden;background:#0d0c0b">
+          <image-slot id="{{ s.slot }}" shape="rect" placeholder="фото"></image-slot>
+        </div>
+        <div data-m="svc-inner" style="padding-right:22px">
+          <div style="font-family:Unbounded;font-weight:400;font-size:19px;letter-spacing:.01em;text-transform:uppercase;margin-top:24px">{{ s.name }}</div>
+          <div style="font-size:13px;line-height:1.65;color:rgba(239,233,225,.5);margin-top:12px;min-height:42px;text-wrap:pretty">{{ s.sub }}</div>
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.09)">
+            <span style="font-family:Unbounded;font-size:17px;color:#d4a95f">{{ s.price }}</span>
+            <span style="font-size:14px;color:rgba(239,233,225,.4)">→</span>
+          </div>
+        </div>
+      </a>
+    </sc-for>
+  </div>
+</section>
+
+<section id="b2-mast" data-m="pad-bot" style="padding:0 0 104px;scroll-margin-top:76px">
+  <div data-m="pad" style="padding:0 44px 40px">
+    <h2 data-rv="0" style="margin:0;font-family:Unbounded;font-weight:600;font-size:clamp(28px,3.6vw,48px);line-height:1.06" data-kz="ШЕБЕРЛЕР">МАСТЕРА</h2>
+  </div>
+  <div data-m="two" style="display:grid;grid-template-columns:1fr 1fr;gap:2px">
+    <div data-rv=".04" data-m="master" style="position:relative;height:600px;overflow:hidden">
+      <image-slot id="b2-m1" shape="rect" placeholder="Алексей"></image-slot>
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,7,6,.1) 30%,rgba(8,7,6,.92));pointer-events:none"></div>
+      <div style="position:absolute;left:40px;right:40px;bottom:38px;pointer-events:none">
+        <div style="font-family:Unbounded;font-weight:400;font-size:38px;line-height:1;color:#efe9e1">Алексей</div>
+        <div style="display:flex;align-items:center;gap:14px;margin-top:14px;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#d4a95f">
+          <span data-kz="Барбер">Барбер</span><span style="width:26px;height:1px;background:rgba(212,169,95,.5)"></span><span data-kz="5 жылдан астам">5+ лет</span>
+        </div>
+        <p style="margin:20px 0 0;max-width:400px;font-size:14px;line-height:1.8;color:rgba(239,233,225,.65)" data-kz="Классикалық шаш қию және сақалмен жұмыс. Пішінді ұстап тұратын нақты сызықтар.">Классические стрижки и работа с бородой. Точные линии, которые держат форму.</p>
+        <div style="display:flex;gap:22px;margin-top:26px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;pointer-events:auto">
+          <a href="#b2-book" style="color:#efe9e1;border-bottom:1px solid rgba(255,255,255,.3);padding-bottom:5px;transition:all .35s" style-hover="color:#d4a95f;border-color:#d4a95f" data-kz="Шеберге жазылу">Записаться к нему</a>
+          <a href="https://instagram.com" style="color:rgba(239,233,225,.55)">Instagram</a>
+        </div>
+      </div>
+    </div>
+    <div data-rv=".1" data-m="master" style="position:relative;height:600px;overflow:hidden">
+      <image-slot id="b2-m2" shape="rect" placeholder="Арман"></image-slot>
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,7,6,.1) 30%,rgba(8,7,6,.92));pointer-events:none"></div>
+      <div style="position:absolute;left:40px;right:40px;bottom:38px;pointer-events:none">
+        <div style="font-family:Unbounded;font-weight:400;font-size:38px;line-height:1;color:#efe9e1">Арман</div>
+        <div style="display:flex;align-items:center;gap:14px;margin-top:14px;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#d4a95f">
+          <span data-kz="Барбер">Барбер</span><span style="width:26px;height:1px;background:rgba(212,169,95,.5)"></span><span data-kz="4 жылдан астам">4+ года</span>
+        </div>
+        <p style="margin:20px 0 0;max-width:400px;font-size:14px;line-height:1.8;color:rgba(239,233,225,.65)" data-kz="Заманауи бейнелер мен детальдар. Фейд және мінезді сәндеу.">Современные образы и детали. Фейды и укладка с характером.</p>
+        <div style="display:flex;gap:22px;margin-top:26px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;pointer-events:auto">
+          <a href="#b2-book" style="color:#efe9e1;border-bottom:1px solid rgba(255,255,255,.3);padding-bottom:5px;transition:all .35s" style-hover="color:#d4a95f;border-color:#d4a95f" data-kz="Шеберге жазылу">Записаться к нему</a>
+          <a href="https://instagram.com" style="color:rgba(239,233,225,.55)">Instagram</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="b2-loc" data-m="pad" style="padding:0 44px 104px;scroll-margin-top:76px">
+  <h2 data-rv="0" style="margin:0 0 40px;font-family:Unbounded;font-weight:600;font-size:clamp(28px,3.6vw,48px);line-height:1.06" data-kz="ЛОКАЦИЯЛАР">ЛОКАЦИИ</h2>
+  <div data-m="two" style="display:grid;grid-template-columns:1.5fr 1fr;gap:2px">
+    <div data-rv=".04" data-m="loc-card" style="position:relative;height:400px;overflow:hidden">
+      <image-slot id="b2-loc1" shape="rect" placeholder="фасад"></image-slot>
+      <div style="position:absolute;inset:0;background:linear-gradient(75deg,rgba(8,7,6,.92) 6%,rgba(8,7,6,.45) 58%,rgba(8,7,6,.1));pointer-events:none"></div>
+      <div data-m="loc-copy" style="position:absolute;left:40px;bottom:38px;pointer-events:none">
+        <div style="font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#d4a95f">01 · <span data-kz="Ашық">Открыто</span></div>
+        <div style="font-family:Unbounded;font-weight:600;font-size:24px;letter-spacing:.1em;margin-top:16px">BLACKSTONE</div>
+        <div style="font-size:14.5px;color:rgba(239,233,225,.72);margin-top:14px;line-height:1.75">Астана, Санжара Асфендиярова, 3</div>
+        <div style="font-size:13px;color:rgba(239,233,225,.45);margin-top:6px">10:00 — 22:00</div>
+        <a href="#b2-cont" style="display:inline-block;margin-top:24px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#efe9e1;border-bottom:1px solid rgba(255,255,255,.3);padding-bottom:6px;pointer-events:auto;transition:all .35s" style-hover="color:#d4a95f;border-color:#d4a95f" data-kz="Картадан көру">Смотреть на карте</a>
+      </div>
+    </div>
+    <div data-rv=".1" data-m="loc-side" style="height:400px;background:#0b0a09;padding:40px;display:flex;flex-direction:column;justify-content:space-between">
+      <div>
+        <div style="font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:rgba(239,233,225,.4)">02 · <span data-kz="Жақында">Скоро</span></div>
+        <div style="font-family:Unbounded;font-weight:300;font-size:26px;margin-top:16px;color:rgba(239,233,225,.55)">Вторая точка</div>
+        <p style="margin:18px 0 0;font-size:14px;line-height:1.8;color:rgba(239,233,225,.4)" data-kz="Астанада екінші кеңістік дайындалып жатыр. Ашылу туралы Instagram-да айтамыз.">Готовим второе пространство в Астане. О запуске расскажем в Instagram.</p>
+      </div>
+      <a href="https://instagram.com" style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(239,233,225,.55);border-bottom:1px solid rgba(255,255,255,.14);padding-bottom:7px;align-self:flex-start;transition:all .35s" style-hover="color:#d4a95f;border-color:#d4a95f" data-kz="Instagram-да бақылау">Следить в Instagram</a>
+    </div>
+  </div>
+</section>
+
+<section style="padding:0 0 104px">
+  <div data-m="pad" style="display:flex;align-items:flex-end;justify-content:space-between;padding:0 44px 32px">
+    <h2 data-rv="0" style="margin:0;font-family:Unbounded;font-weight:600;font-size:clamp(28px,3.6vw,48px);line-height:1.06">АТМОСФЕРА</h2>
+    <span style="font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:rgba(239,233,225,.35)" data-kz="Галерея">Галерея</span>
+  </div>
+  <div data-rv=".04" data-m="gal" style="display:grid;grid-template-columns:1.6fr 1fr 1fr;grid-template-rows:190px 190px;gap:2px">
+    <div style="grid-row:span 2;position:relative;overflow:hidden"><image-slot id="b2-g1" shape="rect" placeholder="зал"></image-slot></div>
+    <div style="position:relative;overflow:hidden"><image-slot id="b2-g2" shape="rect" placeholder="кресло"></image-slot></div>
+    <div style="position:relative;overflow:hidden"><image-slot id="b2-g3" shape="rect" placeholder="детали"></image-slot></div>
+    <div style="position:relative;overflow:hidden"><image-slot id="b2-g4" shape="rect" placeholder="процесс"></image-slot></div>
+    <div style="position:relative;overflow:hidden"><image-slot id="b2-g5" shape="rect" placeholder="результат"></image-slot></div>
+  </div>
+</section>
+
+<section id="b2-rev" data-m="pad" style="padding:0 44px 104px;scroll-margin-top:76px">
+  <div style="display:flex;align-items:baseline;gap:24px;margin-bottom:44px">
+    <h2 data-rv="0" style="margin:0;font-family:Unbounded;font-weight:600;font-size:clamp(28px,3.6vw,48px);line-height:1.06" data-kz="ПІКІРЛЕР">ОТЗЫВЫ</h2>
+    <span data-rv=".04" style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:rgba(239,233,225,.4)">4.9 · 2GIS · <span data-kz="Яндекс">Яндекс</span></span>
+  </div>
+  <div data-m="rev" style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid rgba(255,255,255,.1)">
+    <sc-for list="{{ reviews }}" as="r" hint-placeholder-count="3">
+      <div data-m="rev-item" style="padding:38px 34px 34px 0;border-right:1px solid rgba(255,255,255,.08)" data-rv="0">
+        <div style="font-size:12px;letter-spacing:.22em;color:#d4a95f">{{ r.stars }}</div>
+        <p style="margin:22px 0 0;font-family:Unbounded;font-weight:300;font-size:17px;line-height:1.6;color:rgba(239,233,225,.82);text-wrap:pretty">{{ r.text }}</p>
+        <div style="margin-top:26px;font-size:12.5px;color:rgba(239,233,225,.42)">{{ r.name }} — {{ r.meta }}</div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<section id="b2-book" data-m="book" style="padding:0 44px 104px;display:grid;grid-template-columns:.85fr 1.15fr;gap:2px;scroll-margin-top:76px">
+  <div data-rv="0" data-m="book-pane" style="background:#0b0a09;padding:44px 40px">
+    <h3 style="margin:0 0 30px;font-family:Unbounded;font-weight:600;font-size:17px;letter-spacing:.14em" data-kz="БАҒА ТІЗІМІ">ПРАЙС-ЛИСТ</h3>
+    <sc-for list="{{ priceList }}" as="p" hint-placeholder-count="6">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;gap:14px;padding:15px 0;border-bottom:1px solid rgba(255,255,255,.06)">
+        <span style="font-size:14px;color:rgba(239,233,225,.76)">{{ p.name }}</span>
+        <span style="font-family:Unbounded;font-size:14px;color:#d4a95f;white-space:nowrap">{{ p.price }}</span>
+      </div>
+    </sc-for>
+    <div style="margin-top:26px;font-size:12px;line-height:1.7;color:rgba(239,233,225,.35)" data-kz="Бағалар «бастап» көрсетілген. Нақты құны шебермен кеңескеннен кейін.">Цены указаны от. Точная стоимость — после консультации мастера.</div>
+  </div>
+
+  <div data-rv=".06" data-m="book-pane" style="background:#0d0c0b;padding:44px 40px;border-top:1px solid rgba(212,169,95,.35)">
+    <h3 style="margin:0 0 6px;font-family:Unbounded;font-weight:600;font-size:17px;letter-spacing:.14em;color:#d4a95f" data-kz="ЖАЗЫЛУ">ЗАПИСЬ</h3>
+    <p style="margin:0 0 32px;font-size:13.5px;color:rgba(239,233,225,.45)" data-kz="Төрт қадам — және сіз кестедесіз.">Четыре шага — и ты в расписании.</p>
+
+    <div data-m="book-two" style="display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:28px">
+      <div>
+        <div style="font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;color:rgba(239,233,225,.38);margin-bottom:12px" data-kz="Шебер">Мастер</div>
+        <div style="display:flex;gap:0;border-bottom:1px solid rgba(255,255,255,.12)">
+          <sc-for list="{{ masters }}" as="m" hint-placeholder-count="2">
+            <button onClick="{{ m.pick }}" style="flex:1;padding:14px 6px;background:none;border:none;border-bottom:2px solid {{ m.bd }};color:{{ m.fg }};font-family:'Golos Text';font-size:13px;letter-spacing:.06em;cursor:pointer;transition:all .35s;margin-bottom:-1px">{{ m.name }}</button>
+          </sc-for>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;color:rgba(239,233,225,.38);margin-bottom:12px" data-kz="Қызмет">Услуга</div>
+        <select onChange="{{ setSvc }}" style="width:100%;padding:13px 0;background:transparent;color:#efe9e1;border:none;border-bottom:1px solid rgba(255,255,255,.16);font-family:'Golos Text';font-size:13px;cursor:pointer;outline:none">
+          <sc-for list="{{ svcOptions }}" as="o" hint-placeholder-count="5">
+            <option value="{{ o.i }}" style="background:#0d0c0b">{{ o.name }}</option>
+          </sc-for>
+        </select>
+      </div>
+    </div>
+
+    <div style="font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;color:rgba(239,233,225,.38);margin-bottom:12px" data-kz="Күні">Дата</div>
+    <div style="display:flex;gap:0;margin-bottom:28px;border-bottom:1px solid rgba(255,255,255,.09)">
+      <sc-for list="{{ days }}" as="d" hint-placeholder-count="5">
+        <button onClick="{{ d.pick }}" style="flex:1;padding:14px 0 12px;background:none;border:none;border-bottom:2px solid {{ d.bd }};color:{{ d.fg }};cursor:pointer;transition:all .35s;display:flex;flex-direction:column;align-items:center;gap:5px;margin-bottom:-1px">
+          <span style="font-family:Unbounded;font-size:17px;line-height:1">{{ d.n }}</span>
+          <span style="font-size:9px;letter-spacing:.16em;text-transform:uppercase;opacity:.65">{{ d.w }}</span>
+        </button>
+      </sc-for>
+    </div>
+
+    <div style="font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;color:rgba(239,233,225,.38);margin-bottom:12px" data-kz="Уақыты">Время</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px">
+      <sc-for list="{{ times }}" as="t" hint-placeholder-count="10">
+        <button onClick="{{ t.pick }}" style="padding:11px 15px;background:{{ t.bg }};border:1px solid {{ t.bd }};color:{{ t.fg }};font-family:Unbounded;font-size:11.5px;cursor:{{ t.cursor }};transition:all .3s;text-decoration:{{ t.dec }}">{{ t.label }}</button>
+      </sc-for>
+    </div>
+
+    <div data-m="book-cta" style="display:flex;align-items:flex-end;justify-content:space-between;gap:20px;padding-top:24px;border-top:1px solid rgba(255,255,255,.09)">
+      <div>
+        <div style="font-size:12.5px;color:rgba(239,233,225,.5);line-height:1.6">{{ summary }}</div>
+        <div style="font-family:Unbounded;font-size:22px;color:#d4a95f;margin-top:8px">{{ total }}</div>
+      </div>
+      <button style="background:#d4a95f;color:#080706;border:1px solid #d4a95f;padding:18px 32px;font-family:'Golos Text';font-weight:600;font-size:11px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:background .4s cubic-bezier(.2,.8,.2,1),color .4s" style-hover="background:transparent;color:#d4a95f" data-kz="Жазылуды растау">Подтвердить запись</button>
+    </div>
+  </div>
+</section>
+
+<section id="b2-cont" data-m="cont" style="border-top:1px solid rgba(255,255,255,.08);background:#0a0908;padding:76px 44px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:56px;scroll-margin-top:76px">
+  <div data-rv="0">
+    <div style="font-family:Unbounded;font-weight:600;font-size:20px;letter-spacing:.14em">BLACKSTONE</div>
+    <div style="font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#d4a95f;margin-top:12px" data-kz="Шаш қиюдан да көп">Больше, чем стрижка</div>
+    <p style="margin:24px 0 0;font-size:14px;line-height:1.8;color:rgba(239,233,225,.45);max-width:270px" data-kz="Ерлер стилі және детальға назар — күн сайын 10:00-ден 22:00-ге дейін.">Мужской стиль и внимание к деталям — каждый день с 10:00 до 22:00.</p>
+  </div>
+  <div data-rv=".05" style="display:flex;flex-direction:column;gap:14px;font-size:14px;color:rgba(239,233,225,.7)">
+    <div style="font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:rgba(239,233,225,.38);margin-bottom:6px" data-kz="Байланыс">Контакты</div>
+    <div>Астана, Санжара Асфендиярова, 3</div>
+    <a href="tel:+77020000000">+7 702 000 00 00</a>
+    <a href="https://instagram.com">@blackstone.barbershop</a>
+    <div data-kz="Күн сайын 10:00 — 22:00">Ежедневно 10:00 — 22:00</div>
+  </div>
+  <div data-rv=".1">
+    <div style="font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:rgba(239,233,225,.38);margin-bottom:16px" data-kz="Жазылу">Подписка</div>
+    <p style="margin:0 0 18px;font-size:13.5px;color:rgba(239,233,225,.45)" data-kz="Акциялар мен бос орындар туралы хабарлаймыз">Расскажем про акции и свободные окна</p>
+    <div style="display:flex;align-items:center;border-bottom:1px solid rgba(255,255,255,.16)">
+      <input placeholder="E-mail" style="flex:1;background:transparent;border:none;outline:none;padding:14px 0;color:#efe9e1;font-family:'Golos Text';font-size:13.5px">
+      <button style="background:none;border:none;color:#d4a95f;font-size:16px;cursor:pointer;padding:0 4px">→</button>
+    </div>
+  </div>
+</section>
+
+<footer data-m="foot" style="border-top:1px solid rgba(255,255,255,.06);padding:26px 44px;display:flex;align-items:center;justify-content:space-between;font-size:11px;letter-spacing:.08em;color:rgba(239,233,225,.3)">
+  <span>© 2026 Blackstone Barbershop</span>
+  <span style="display:flex;gap:24px"><a href="#b2-book" style="color:inherit" data-kz="Құпиялылық саясаты">Политика конфиденциальности</a><a href="#b2-book" style="color:inherit" data-kz="Жария оферта">Публичная оферта</a></span>
+</footer>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440}}">
+class Component extends DCLogic {
+  state = { open: 0, master: 0, svc: 0, day: 22, time: '15:00', lang: 'ru', menu: false };
+
+  svcData = [
+    { num: '01', name: 'Стрижка', nameKz: 'Шаш қию', sub: 'мужская стрижка, мытьё и укладка', subKz: 'ерлер қиюы, жуу және сәндеу', full: 'Мужская стрижка', fullKz: 'Ерлер шаш қиюы', dur: '60 мин', durKz: '60 мин', p: 6000, slot: 'b2-s1' },
+    { num: '02', name: 'Борода', nameKz: 'Сақал', sub: 'моделирование формы и контур', subKz: 'пішінді модельдеу және контур', full: 'Стрижка бороды', fullKz: 'Сақал қию', dur: '40 мин', durKz: '40 мин', p: 3000, slot: 'b2-s2' },
+    { num: '03', name: 'Комплекс', nameKz: 'Кешен', sub: 'стрижка + борода за один визит', subKz: 'бір келуде қию + сақал', full: 'Комплекс (стрижка + борода)', fullKz: 'Кешен (қию + сақал)', dur: '90 мин', durKz: '90 мин', p: 8000, slot: 'b2-s3' },
+    { num: '04', name: 'Бритьё', nameKz: 'Қыру', sub: 'опасной бритвой, горячее полотенце', subKz: 'ұстарамен, ыстық сүлгі', full: 'Бритьё опасной бритвой', fullKz: 'Ұстарамен қыру', dur: '45 мин', durKz: '45 мин', p: 4000, slot: 'b2-s4' },
+    { num: '05', name: 'Укладка', nameKz: 'Сәндеу', sub: 'уход, фиксация, совет по стилю', subKz: 'күтім, бекіту, стиль бойынша кеңес', full: 'Укладка', fullKz: 'Сәндеу', dur: '20 мин', durKz: '20 мин', p: 2000, slot: 'b2-s5' }
+  ];
+
+  extraPrices = [{ full: 'Камуфляж седины', fullKz: 'Ақ шашты бүркемелеу', p: 5000 }];
+
+  reviewData = [
+    { stars: '★★★★★', text: 'Алексей сделал ровно то, что я хотел, и даже лучше. Спокойно, без спешки.', textKz: 'Алексей мен қалағандай, тіпті одан да жақсы жасады. Тыныш, асығыстық жоқ.', name: 'Данияр', meta: '2GIS' },
+    { stars: '★★★★★', text: 'Хожу к Арману полгода. Чистая работа с бородой и понятный совет по уходу.', textKz: 'Арманға жарты жылдан бері келемін. Сақалмен таза жұмыс және күтім бойынша нақты кеңес.', name: 'Ерлан', meta: 'Яндекс' },
+    { stars: '★★★★★', text: 'Отдельный плюс — бритьё опасной бритвой. Такого качества в городе мало.', textKz: 'Жеке артықшылығы — ұстарамен қыру. Қалада мұндай сапа аз.', name: 'Тимур', meta: '2GIS' }
+  ];
+
+  renderVals() {
+    const st = this.state;
+    const kz = st.lang === 'kz';
+    const money = (n) => n.toLocaleString('ru-RU') + ' ₸';
+    const pick = (k, v) => () => this.setState({ [k]: v });
+    const tab = (on) => ({
+      fg: on ? '#d4a95f' : 'rgba(239,233,225,.55)',
+      bd: on ? '#d4a95f' : 'transparent'
+    });
+
+    const strip = this.svcData.map(d => ({
+      num: d.num, slot: d.slot,
+      name: kz ? d.nameKz : d.name,
+      sub: kz ? d.subKz : d.sub,
+      dur: kz ? d.durKz : d.dur,
+      price: kz ? money(d.p) + '-ден' : 'от ' + money(d.p)
+    }));
+
+    const masterNames = ['Алексей', 'Арман'];
+    const dayDefs = [{ n: 20, w: 'Пн' }, { n: 21, w: 'Вт' }, { n: 22, w: 'Ср' }, { n: 23, w: 'Чт' }, { n: 24, w: 'Пт' }];
+    const dayDefsKz = ['Дс', 'Сс', 'Ср', 'Бс', 'Жм'];
+    const slots = ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00'];
+    const busy = { '11:00': 1, '16:00': 1 };
+    const s = this.svcData[st.svc];
+
+    const now = new Date();
+    const h = now.getHours();
+    const openNow = h >= 10 && h < 22;
+
+    const menu = st.menu;
+    const navItems = [
+      { href: '#b2-svc', ru: 'Услуги', kz: 'Қызметтер' },
+      { href: '#b2-mast', ru: 'Мастера', kz: 'Шеберлер' },
+      { href: '#b2-loc', ru: 'Локации', kz: 'Локациялар' },
+      { href: '#b2-rev', ru: 'Отзывы', kz: 'Пікірлер' },
+      { href: '#b2-cont', ru: 'Контакты', kz: 'Байланыс' }
+    ];
+
+    return {
+      toggleMenu: () => this.setState(s => ({ menu: !s.menu })),
+      closeMenu: () => this.setState({ menu: false }),
+      menuOp: menu ? 1 : 0,
+      menuPe: menu ? 'auto' : 'none',
+      menuTf: menu ? 'none' : 'translateY(-14px)',
+      menuLinks: navItems.map(n => ({ href: n.href, label: kz ? n.kz : n.ru })),
+      menuCta: kz ? 'Жазылу' : 'Записаться',
+      burgerLabel: menu ? (kz ? 'Жабу' : 'Закрыть') : (kz ? 'Мәзір' : 'Меню'),
+      burgerTop: menu ? 'translateY(6px) rotate(45deg)' : 'none',
+      burgerBot: menu ? 'translateY(-6px) rotate(-45deg)' : 'none',
+      burgerMidOp: menu ? 0 : 1,
+      statusText: openNow
+        ? (kz ? 'Қазір ашық · 22:00-ге дейін' : 'Открыто сейчас · до 22:00')
+        : (kz ? 'Жабық · 10:00-де ашылады' : 'Закрыто · откроем в 10:00'),
+      statusColor: openNow ? '#d4a95f' : 'rgba(239,233,225,.4)',
+      langs: ['ru', 'kz'].map(code => ({
+        code: code.toUpperCase(),
+        pick: () => this.setState({ lang: code }),
+        fg: st.lang === code ? '#d4a95f' : 'rgba(239,233,225,.4)',
+        bd: st.lang === code ? '#d4a95f' : 'transparent'
+      })),
+      strip,
+      reviews: this.reviewData.map(r => ({
+        stars: r.stars, name: r.name, meta: r.meta,
+        text: kz ? r.textKz : r.text
+      })),
+      masters: masterNames.map((name, i) => Object.assign({ name, pick: pick('master', i) }, tab(st.master === i))),
+      svcOptions: this.svcData.map((d, i) => ({ i, name: (kz ? d.nameKz : d.name) + ' — ' + money(d.p) })),
+      setSvc: (e) => this.setState({ svc: parseInt(e.target.value, 10) || 0 }),
+      days: dayDefs.map((d, i) => Object.assign({ n: d.n, w: kz ? dayDefsKz[i] : d.w, pick: pick('day', d.n) }, tab(st.day === d.n))),
+      times: slots.map(label => {
+        const isBusy = !!busy[label];
+        const on = st.time === label && !isBusy;
+        return {
+          label,
+          pick: isBusy ? () => {} : pick('time', label),
+          bg: on ? '#d4a95f' : 'transparent',
+          fg: on ? '#080706' : (isBusy ? 'rgba(239,233,225,.22)' : 'rgba(239,233,225,.7)'),
+          bd: on ? '#d4a95f' : 'rgba(255,255,255,.12)',
+          cursor: isBusy ? 'not-allowed' : 'pointer',
+          dec: isBusy ? 'line-through' : 'none'
+        };
+      }),
+      total: money(s.p),
+      summary: masterNames[st.master] + ' · ' + (kz ? s.nameKz : s.name) + ' · ' + st.day + (kz ? ' тамыз, ' : ' авг, ') + st.time,
+      priceList: this.svcData.concat(this.extraPrices).map(d => ({
+        name: kz ? d.fullKz : d.full,
+        price: money(d.p)
+      }))
+    };
+  }
+
+  componentDidMount() {
+    this.io = new IntersectionObserver((es) => {
+      es.forEach(e => {
+        if (!e.isIntersecting) return;
+        e.target.__shown = 1;
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'none';
+      });
+    }, { threshold: 0.12 });
+
+    this.scan();
+
+    this.onScroll = () => {
+      const doc = document.documentElement;
+      const nav = document.getElementById('b2Nav');
+      if (nav) {
+        const past = doc.scrollTop > 60;
+        const mob = window.innerWidth <= 900;
+        nav.style.padding = mob ? (past ? '12px 20px' : '16px 20px') : (past ? '13px 44px' : '22px 44px');
+        nav.style.background = past ? 'rgba(8,7,6,.88)' : 'transparent';
+        nav.style.backdropFilter = past ? 'blur(16px)' : 'none';
+        nav.style.borderBottom = past ? '1px solid rgba(255,255,255,.08)' : '1px solid transparent';
+      }
+      const hero = document.getElementById('b2Hero');
+      if (hero) hero.style.transform = window.innerWidth > 900
+        ? 'translateY(' + (doc.scrollTop * 0.09).toFixed(1) + 'px) scale(1.03)'
+        : 'none';
+    };
+
+    this.onMove = (e) => {
+      const g = document.getElementById('b2Glow');
+      if (g) g.style.transform = 'translate(' + e.clientX + 'px,' + e.clientY + 'px)';
+    };
+
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('mousemove', this.onMove);
+    this.onScroll();
+  }
+
+  componentDidUpdate() {
+    this.scan();
+    this.applyLang();
+    document.body.style.overflow = this.state.menu ? 'hidden' : '';
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('mousemove', this.onMove);
+    if (this.io) this.io.disconnect();
+  }
+
+  applyLang() {
+    const kz = this.state.lang === 'kz';
+    document.querySelectorAll('[data-kz]').forEach(el => {
+      if (el.__ru === undefined) el.__ru = el.textContent;
+      const next = kz ? el.dataset.kz : el.__ru;
+      if (el.textContent !== next) el.textContent = next;
+    });
+  }
+
+  scan() {
+    const vh = window.innerHeight;
+    document.querySelectorAll('[data-rv]').forEach(el => {
+      const d = parseFloat(el.dataset.rv) || 0;
+      const tr = 'opacity .9s cubic-bezier(.2,.8,.2,1) ' + d + 's, transform 1s cubic-bezier(.2,.8,.2,1) ' + d + 's';
+      if (el.__shown) {
+        el.style.transition = tr;
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+        return;
+      }
+      if (!el.__rv) {
+        el.__rv = 1;
+        el.style.opacity = '0';
+        el.style.transform = el.dataset.rvx || 'translateY(28px)';
+        el.style.transition = tr;
+        this.io.observe(el);
+      }
+      const r = el.getBoundingClientRect();
+      if (r.top < vh * 0.94 && r.bottom > 0) {
+        el.__shown = 1;
+        requestAnimationFrame(() => { el.style.opacity = '1'; el.style.transform = 'none'; });
+      }
+    });
+  }
+}
+</script>
+</body>
+</html>
