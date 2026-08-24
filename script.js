@@ -94,6 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
     state.menuOpen = !state.menuOpen;
     burgerBtn.classList.toggle('open', state.menuOpen);
     mobileMenu.classList.toggle('open', state.menuOpen);
+    document.body.classList.toggle('menu-open', state.menuOpen);
     document.body.style.overflow = state.menuOpen ? 'hidden' : '';
 
     const label = burgerBtn.querySelector('.burger-label');
@@ -110,6 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
       state.menuOpen = false;
       burgerBtn.classList.remove('open');
       mobileMenu.classList.remove('open');
+      document.body.classList.remove('menu-open');
       document.body.style.overflow = '';
       const label = burgerBtn.querySelector('.burger-label');
       label.textContent = state.lang === 'kz' ? 'Мәзір' : 'Меню';
