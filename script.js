@@ -81,7 +81,14 @@ document.addEventListener('DOMContentLoaded', () => {
     scroller.addEventListener('touchcancel', unlock, { passive: true });
   };
 
-  document.querySelectorAll('.masters-grid, .reviews-grid, .gallery-grid, .book-days').forEach(lockCarouselAxis);
+  document.querySelectorAll('.masters-grid, .gallery-grid, .book-days').forEach(lockCarouselAxis);
+
+  const reviewsSet = document.querySelector('.reviews-set');
+  if (reviewsSet && reviewsSet.parentElement) {
+    const clone = reviewsSet.cloneNode(true);
+    clone.setAttribute('aria-hidden', 'true');
+    reviewsSet.parentElement.appendChild(clone);
+  }
 
   // ===== SCROLL — Navbar + Parallax =====
   let ticking = false;

@@ -83,11 +83,11 @@ button {
 
 @keyframes marquee {
   from {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
 
   to {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
@@ -1065,7 +1065,7 @@ button {
 
 /* --- Reviews --- */
 .reviews {
-  padding: 0 44px 104px;
+  padding: 0 0 104px;
   scroll-margin-top: 76px;
 }
 
@@ -1073,7 +1073,8 @@ button {
   display: flex;
   align-items: baseline;
   gap: 24px;
-  margin-bottom: 44px;
+  margin-bottom: 36px;
+  padding: 0 44px;
 }
 
 .reviews-rating {
@@ -1083,47 +1084,124 @@ button {
   color: var(--text-muted);
 }
 
-.reviews-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0;
-  border-top: 1px solid rgba(255, 255, 255, .1);
+.reviews-marquee {
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  border-top: 1px solid rgba(212, 169, 95, .22);
+  border-bottom: 1px solid rgba(212, 169, 95, .22);
+  background:
+    linear-gradient(90deg, rgba(8, 7, 6, .92) 0%, transparent 12%, transparent 88%, rgba(8, 7, 6, .92) 100%),
+    #0a0908;
+  padding: 22px 0;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 72px, #000 calc(100% - 72px), transparent);
+  mask-image: linear-gradient(90deg, transparent 0, #000 72px, #000 calc(100% - 72px), transparent);
+}
+
+.reviews-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 48s linear infinite;
+  will-change: transform;
+}
+
+.reviews-set {
+  display: flex;
+  gap: 16px;
+  padding-right: 16px;
 }
 
 .review-card {
-  padding: 38px 34px 34px;
-  border-right: 1px solid rgba(255, 255, 255, .08);
+  position: relative;
+  flex: 0 0 340px;
+  min-height: 196px;
+  display: flex;
+  flex-direction: column;
+  padding: 26px 26px 22px 28px;
+  background: linear-gradient(165deg, #141210 0%, #0c0b0a 100%);
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: 12px;
+  pointer-events: none;
 }
 
-@media (min-width: 901px) {
-  .review-card:first-child {
-    padding-left: 0;
-  }
+.review-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 18px;
+  bottom: 18px;
+  width: 2px;
+  background: var(--gold);
+  border-radius: 2px;
+}
 
-  .review-card:last-child {
-    border-right: none;
-  }
+.review-card::after {
+  content: '“';
+  position: absolute;
+  right: 18px;
+  top: 4px;
+  font-family: var(--ff-heading);
+  font-weight: 300;
+  font-size: 64px;
+  line-height: 1;
+  color: rgba(212, 169, 95, .14);
+  pointer-events: none;
+}
+
+.review-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  position: relative;
+  z-index: 1;
 }
 
 .review-stars {
-  font-size: 12px;
+  font-size: 11px;
   letter-spacing: .22em;
   color: var(--gold);
 }
 
+.review-src {
+  font-size: 9px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
 .review-text {
-  margin: 22px 0 0;
+  position: relative;
+  z-index: 1;
+  margin: 16px 0 0;
   font-family: var(--ff-heading);
   font-weight: 300;
-  font-size: 17px;
-  line-height: 1.6;
-  color: rgba(239, 233, 225, .82);
+  font-size: 16px;
+  line-height: 1.55;
+  color: rgba(239, 233, 225, .88);
+  flex: 1;
 }
 
 .review-author {
-  margin-top: 26px;
-  font-size: 12.5px;
-  color: var(--text-muted);
+  position: relative;
+  z-index: 1;
+  margin-top: 18px;
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reviews-track {
+    animation: none;
+  }
+
+  .reviews-marquee {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
 }
 
 /* --- Booking --- */
@@ -1931,35 +2009,57 @@ button {
     padding-right: 18px;
   }
 
-  /* Reviews Mobile App Carousel */
-  .reviews-grid {
-    display: flex;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x proximity;
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior-x: contain;
-    touch-action: pan-x pan-y;
-    gap: 14px;
-    padding-bottom: 14px;
-    border-top: none;
+  /* Reviews — ticket ticker, full-bleed, never pauses */
+  .reviews {
+    padding-left: 0;
+    padding-right: 0;
   }
 
-  .reviews-grid::-webkit-scrollbar {
-    display: none;
+  .reviews-header {
+    padding-left: 18px;
+    padding-right: 18px;
+    margin-bottom: 18px;
+    gap: 12px;
+    flex-wrap: wrap;
   }
 
-  .review-card,
-  .review-card:first-child,
-  .review-card:last-child {
-    flex: 0 0 85vw;
-    max-width: 320px;
-    scroll-snap-align: start;
-    background: var(--bg-card);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
-    padding: 26px 22px;
-    border-right: 1px solid rgba(255, 255, 255, 0.08);
+  .reviews-marquee {
+    padding: 16px 0;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 24px, #000 calc(100% - 24px), transparent);
+    mask-image: linear-gradient(90deg, transparent 0, #000 24px, #000 calc(100% - 24px), transparent);
+  }
+
+  .reviews-track {
+    animation-duration: 36s;
+  }
+
+  .reviews-set {
+    gap: 12px;
+    padding-right: 12px;
+  }
+
+  .review-card {
+    flex: 0 0 min(78vw, 280px);
+    min-height: 188px;
+    padding: 20px 18px 18px 20px;
+    border-radius: 10px;
+  }
+
+  .review-card::after {
+    font-size: 52px;
+    right: 12px;
+    top: 0;
+  }
+
+  .review-text {
+    font-size: 14.5px;
+    margin-top: 12px;
+    line-height: 1.5;
+  }
+
+  .review-author {
+    margin-top: 14px;
+    font-size: 10px;
   }
 
   .review-text {
