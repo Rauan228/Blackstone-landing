@@ -4,25 +4,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // ===== STATE =====
   const state = {
     lang: 'ru',
-    master: 0,
-    svc: 0,
-    day: null,
-    time: '15:00',
     menuOpen: false
   };
 
-  const prices = [5000];
-  const masterNames = ['Алексей', 'Арман'];
-  const svcNames = {
-    ru: ['Комплексная стрижка (Всё включено)'],
-    kz: ['Комплекстік қию (Барлығы кіреді)']
-  };
-  const dayNames = {
-    ru: ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'],
-    kz: ['Дс','Сс','Ср','Бс','Жм','Сб','Жс']
-  };
-  const timeSlots = ['10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00','21:00'];
-  const busySlots = new Set(['11:00', '16:00']);
+  const WA_NUMBER = '77751924036';
 
   // ===== ELEMENTS =====
   const navbar = document.getElementById('navbar');
@@ -30,18 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const cursorGlow = document.getElementById('cursor-glow');
   const burgerBtn = document.getElementById('burger-btn');
   const mobileMenu = document.getElementById('mobile-menu');
-  const masterTabs = document.getElementById('master-tabs');
-  const svcStatic = document.getElementById('svc-static');
-  const dayTabsEl = document.getElementById('day-tabs');
-  const timeSlotsEl = document.getElementById('time-slots');
-  const bookSummary = document.getElementById('book-summary');
-  const bookTotal = document.getElementById('book-total');
-  const bookConfirm = document.getElementById('book-confirm');
   // ===== INIT =====
-  initDays();
-  initTimeSlots();
-  updateBookingSummary();
   syncChromeInsets();
+  refreshWaLinks();
 
   // In-app overlay (Telegram/Instagram) needs a one-shot top offset.
   // Do not follow visualViewport on scroll: Chrome/Safari toolbar
@@ -105,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     scroller.addEventListener('touchcancel', unlock, { passive: true });
   };
 
-  document.querySelectorAll('.masters-grid, .gallery-grid, .book-days').forEach(lockCarouselAxis);
+  document.querySelectorAll('.masters-grid, .gallery-grid').forEach(lockCarouselAxis);
 
   const reviewsSet = document.querySelector('.reviews-set');
   if (reviewsSet && reviewsSet.parentElement) {
@@ -198,8 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
         b.classList.toggle('active', b.dataset.lang === state.lang);
       });
       applyLanguage();
-      updateBookingSummary();
-      initDays();
+      refreshWaLinks();
 
       const label = burgerBtn.querySelector('.burger-label');
       if (!state.menuOpen) {
@@ -208,137 +183,44 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  function waHref(master) {
+    const kz = state.lang === 'kz';
+    let msg;
+    if (master) {
+      msg = kz
+        ? `Сәлеметсіз бе! ${master} шеберіне комплекстік қиюға жазылғым келеді.`
+        : `Здравствуйте! Хочу записаться к мастеру ${master} на комплексную стрижку.`;
+    } else {
+      msg = kz
+        ? 'Сәлеметсіз бе! Blackstone барбершопына комплекстік қиюға жазылғым келеді.'
+        : 'Здравствуйте! Хочу записаться в Blackstone на комплексную стрижку.';
+    }
+    return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+  }
+
+  function refreshWaLinks() {
+    document.querySelectorAll('[data-wa]').forEach((a) => {
+      a.href = waHref(a.getAttribute('data-wa-master') || '');
+    });
+  }
+
   function applyLanguage() {
     const kz = state.lang === 'kz';
+    document.documentElement.lang = kz ? 'kk' : 'ru';
+    document.title = kz
+      ? 'Blackstone Barbershop — Астанадағы премиум барбершоп'
+      : 'Blackstone Barbershop — Премиальный барбершоп в Астане';
+
     document.querySelectorAll('[data-kz]').forEach(el => {
       if (el.__ru === undefined) el.__ru = el.textContent;
       const next = kz ? el.dataset.kz : el.__ru;
       if (el.textContent !== next) el.textContent = next;
     });
 
-    // Update select options
-    if (svcStatic) {
-      if (svcStatic.__ru === undefined) svcStatic.__ru = svcStatic.textContent;
-      const next = kz ? svcStatic.dataset.kz : svcStatic.__ru;
-      if (svcStatic.textContent !== next) svcStatic.textContent = next;
+    if (burgerBtn) {
+      burgerBtn.setAttribute('aria-label', kz ? 'Мәзір' : 'Меню');
     }
   }
-
-  // ===== MASTER TABS =====
-  masterTabs.addEventListener('click', (e) => {
-    const tab = e.target.closest('[data-master]');
-    if (!tab) return;
-    state.master = parseInt(tab.dataset.master);
-    masterTabs.querySelectorAll('.book-tab').forEach((t, i) => {
-      t.classList.toggle('active', i === state.master);
-    });
-    updateBookingSummary();
-  });
-
-  // ===== SERVICE SELECT =====
-  // ===== DAY TABS =====
-  function initDays() {
-    dayTabsEl.innerHTML = '';
-    const today = new Date();
-    const kz = state.lang === 'kz';
-
-    for (let i = 0; i < 5; i++) {
-      const d = new Date(today);
-      d.setDate(today.getDate() + i);
-      const dayNum = d.getDate();
-      const dayOfWeek = d.getDay();
-      const names = kz ? dayNames.kz : dayNames.ru;
-      const dayName = names[dayOfWeek === 0 ? 6 : dayOfWeek - 1];
-
-      const btn = document.createElement('button');
-      btn.className = 'book-day';
-      if (state.day === null && i === 0) {
-        state.day = dayNum;
-        btn.classList.add('active');
-      } else if (state.day === dayNum) {
-        btn.classList.add('active');
-      }
-      btn.dataset.day = dayNum;
-      btn.innerHTML = `<span class="day-num">${dayNum}</span><span class="day-name">${dayName}</span>`;
-      btn.addEventListener('click', () => {
-        state.day = dayNum;
-        dayTabsEl.querySelectorAll('.book-day').forEach(b => {
-          b.classList.toggle('active', parseInt(b.dataset.day) === state.day);
-        });
-        updateBookingSummary();
-      });
-      dayTabsEl.appendChild(btn);
-    }
-  }
-
-  // ===== TIME SLOTS =====
-  function initTimeSlots() {
-    timeSlotsEl.innerHTML = '';
-    timeSlots.forEach(time => {
-      const btn = document.createElement('button');
-      btn.className = 'book-time';
-      btn.textContent = time;
-
-      if (busySlots.has(time)) {
-        btn.classList.add('busy');
-      } else if (state.time === time) {
-        btn.classList.add('active');
-      }
-
-      btn.addEventListener('click', () => {
-        if (busySlots.has(time)) return;
-        state.time = time;
-        timeSlotsEl.querySelectorAll('.book-time').forEach(b => {
-          b.classList.remove('active');
-          if (b.textContent === time && !b.classList.contains('busy')) {
-            b.classList.add('active');
-          }
-        });
-        updateBookingSummary();
-      });
-      timeSlotsEl.appendChild(btn);
-    });
-  }
-
-  // ===== BOOKING SUMMARY =====
-  function updateBookingSummary() {
-    const kz = state.lang === 'kz';
-    const master = masterNames[state.master];
-    const svcName = kz ? svcNames.kz[state.svc] : svcNames.ru[state.svc];
-    const price = prices[state.svc];
-
-    const monthName = kz ? getKzMonth() : getRuMonth();
-    const summary = `${master} · ${svcName} · ${state.day} ${monthName}, ${state.time}`;
-    bookSummary.textContent = summary;
-    bookTotal.textContent = price.toLocaleString('ru-RU').replace(/\s/g, '\u00A0') + '\u00A0₸';
-  }
-
-  function getRuMonth() {
-    const months = ['янв','фев','мар','апр','мая','июн','июл','авг','сен','окт','ноя','дек'];
-    return months[new Date().getMonth()];
-  }
-
-  function getKzMonth() {
-    const months = ['қаңтар','ақпан','наурыз','сәуір','мамыр','маусым','шілде','тамыз','қыркүйек','қазан','қараша','желтоқсан'];
-    return months[new Date().getMonth()];
-  }
-
-  // ===== CONFIRM BOOKING (WhatsApp redirect) =====
-  bookConfirm.addEventListener('click', () => {
-    const kz = state.lang === 'kz';
-    const master = masterNames[state.master];
-    const svcName = kz ? svcNames.kz[state.svc] : svcNames.ru[state.svc];
-    const monthName = kz ? getKzMonth() : getRuMonth();
-
-    const message = encodeURIComponent(
-      `Здравствуйте! Хочу записаться в Blackstone:\n` +
-      `Мастер: ${master}\n` +
-      `Услуга: ${svcName}\n` +
-      `Дата: ${state.day} ${monthName}\n` +
-      `Время: ${state.time}`
-    );
-    window.open(`https://wa.me/77020000000?text=${message}`, '_blank');
-  });
 
 
   // ===== SMOOTH SCROLL for anchor links =====
