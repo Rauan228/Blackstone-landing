@@ -678,19 +678,16 @@ button {
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   display: grid;
   grid-template-columns: 1fr 1fr;
-  column-gap: 28px;
+  column-gap: 32px;
+  align-items: start;
 }
 
 .step-item {
   display: flex;
-  align-items: baseline;
+  align-items: flex-start;
   gap: 18px;
-  padding: 14px 0;
+  padding: 16px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.step-item:first-child {
-  padding-top: 0;
 }
 
 .step-num {
@@ -701,6 +698,8 @@ button {
   color: var(--gold);
   flex: none;
   width: 26px;
+  line-height: 1.35;
+  padding-top: 1px;
 }
 
 .step-title {
@@ -1642,6 +1641,14 @@ button {
 [data-reveal].visible {
   opacity: 1;
   transform: none;
+}
+
+[data-kz] {
+  transition: opacity .22s ease;
+}
+
+body.lang-switching [data-kz] {
+  opacity: 0;
 }
 
 /* ===== MOBILE FLOATING ACTION BAR ===== */

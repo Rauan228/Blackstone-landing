@@ -4,7 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // ===== STATE =====
   const state = {
     lang: 'ru',
-    menuOpen: false
+    menuOpen: false,
+    langLock: false
   };
 
   const WA_NUMBER = '77751924036';
@@ -169,17 +170,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // ===== LANGUAGE SWITCHER =====
   document.querySelectorAll('[data-lang]').forEach(btn => {
     btn.addEventListener('click', () => {
-      state.lang = btn.dataset.lang;
+      const next = btn.dataset.lang;
+      if (next === state.lang || state.langLock) return;
+      state.lang = next;
+      state.langLock = true;
       document.querySelectorAll('[data-lang]').forEach(b => {
         b.classList.toggle('active', b.dataset.lang === state.lang);
       });
       applyLanguage();
-      refreshWaLinks();
-
-      const label = burgerBtn.querySelector('.burger-label');
-      if (!state.menuOpen) {
-        label.textContent = state.lang === 'kz' ? 'Мәзір' : 'Меню';
-      }
     });
   });
 
@@ -206,20 +204,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function applyLanguage() {
     const kz = state.lang === 'kz';
-    document.documentElement.lang = kz ? 'kk' : 'ru';
-    document.title = kz
-      ? 'Blackstone Barbershop — Астанадағы премиум барбершоп'
-      : 'Blackstone Barbershop — Премиальный барбершоп в Астане';
+    const swap = () => {
+      document.documentElement.lang = kz ? 'kk' : 'ru';
+      document.title = kz
+        ? 'Blackstone Barbershop — Астанадағы премиум барбершоп'
+        : 'Blackstone Barbershop — Премиальный барбершоп в Астане';
 
-    document.querySelectorAll('[data-kz]').forEach(el => {
-      if (el.__ru === undefined) el.__ru = el.textContent;
-      const next = kz ? el.dataset.kz : el.__ru;
-      if (el.textContent !== next) el.textContent = next;
-    });
+      document.querySelectorAll('[data-kz]').forEach(el => {
+        if (el.__ru === undefined) el.__ru = el.textContent;
+        const next = kz ? el.dataset.kz : el.__ru;
+        if (el.textContent !== next) el.textContent = next;
+      });
 
-    if (burgerBtn) {
-      burgerBtn.setAttribute('aria-label', kz ? 'Мәзір' : 'Меню');
-    }
+      if (burgerBtn) {
+        burgerBtn.setAttribute('aria-label', kz ? (state.menuOpen ? 'Жабу' : 'Мәзір') : (state.menuOpen ? 'Закрыть' : 'Меню'));
+        const label = burgerBtn.querySelector('.burger-label');
+        if (label) {
+          label.textContent = kz
+            ? (state.menuOpen ? 'Жабу' : 'Мәзір')
+            : (state.menuOpen ? 'Закрыть' : 'Меню');
+        }
+      }
+      refreshWaLinks();
+      document.body.classList.remove('lang-switching');
+      state.langLock = false;
+    };
+
+    document.body.classList.add('lang-switching');
+    window.setTimeout(swap, 200);
   }
 
 
