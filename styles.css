@@ -61,6 +61,8 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  -webkit-user-drag: none;
+  user-select: none;
 }
 
 button {
@@ -719,6 +721,15 @@ button {
   font-size: 32px;
   color: var(--gold);
   line-height: 1;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.price-val .currency,
+.price-value .currency {
+  font-family: var(--ff-body);
+  font-weight: 600;
+  letter-spacing: 0;
 }
 
 .service-hero-price .price-lbl {
@@ -744,13 +755,14 @@ button {
   object-fit: cover;
 }
 
-/* Highlighted Price Row */
-.price-row-highlight {
+/* Highlighted Price Row — chained selectors so .price-row padding doesn't win */
+.price-row.price-row-highlight {
   background: rgba(212, 169, 95, 0.08);
-  padding: 14px 16px 14px 20px;
+  padding: 16px 18px 16px 20px;
   margin: -6px -14px 10px;
   border-radius: 6px;
   border-left: 3px solid var(--gold);
+  gap: 12px;
 }
 
 .price-row-highlight .price-name {
@@ -789,11 +801,14 @@ button {
 }
 
 .master-card img {
+  pointer-events: none;
   transition: transform 1.2s cubic-bezier(.2, .8, .2, 1);
 }
 
-.master-card:hover img {
-  transform: scale(1.05);
+@media (hover: hover) and (pointer: fine) {
+  .master-card:hover img {
+    transform: scale(1.05);
+  }
 }
 
 .master-overlay {
@@ -887,6 +902,12 @@ button {
   position: relative;
   height: 400px;
   overflow: hidden;
+}
+
+.loc-main img,
+.hero-image img,
+.service-hero-media img {
+  pointer-events: none;
 }
 
 .loc-main-overlay {
@@ -1032,11 +1053,14 @@ button {
 }
 
 .gallery-grid img {
+  pointer-events: none;
   transition: transform .8s cubic-bezier(.2, .8, .2, 1);
 }
 
-.gallery-grid>div:hover img {
-  transform: scale(1.08);
+@media (hover: hover) and (pointer: fine) {
+  .gallery-grid>div:hover img {
+    transform: scale(1.08);
+  }
 }
 
 /* --- Reviews --- */
@@ -1071,12 +1095,14 @@ button {
   border-right: 1px solid rgba(255, 255, 255, .08);
 }
 
-.review-card:first-child {
-  padding-left: 0;
-}
+@media (min-width: 901px) {
+  .review-card:first-child {
+    padding-left: 0;
+  }
 
-.review-card:last-child {
-  border-right: none;
+  .review-card:last-child {
+    border-right: none;
+  }
 }
 
 .review-stars {
@@ -1151,6 +1177,7 @@ button {
   font-size: 14px;
   color: var(--gold);
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .price-row-sub {
@@ -1567,9 +1594,19 @@ button {
 
 @media (max-width: 900px) {
 
+  html {
+    scroll-behavior: auto;
+  }
+
   /* Body padding for floating bar */
   body {
     padding-bottom: 74px;
+  }
+
+  /* Don't translateY-reveal inside nested scrollers — it creates 28px of
+     overflow-y that eats the first vertical pan on Android/iOS. */
+  [data-reveal] {
+    transform: none;
   }
 
   /* Nav */
@@ -1760,13 +1797,17 @@ button {
   }
 
   .service-hero-price {
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
     align-items: baseline;
-    justify-content: space-between;
+    column-gap: 16px;
+    row-gap: 4px;
   }
 
   .service-hero-price .price-val {
     font-size: 28px;
+    white-space: nowrap;
+    line-height: 1.15;
   }
 
   .btn-hero-book {
@@ -1779,20 +1820,15 @@ button {
     order: -1;
   }
 
-  /* Masters Mobile UI */
+  /* Masters: stack, don't use a nested x-scroller (it traps the first pan). */
   .masters-grid {
     display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
+    flex-direction: column;
+    overflow: visible;
     gap: 14px;
-    padding-bottom: 16px;
     padding-left: 18px;
     padding-right: 18px;
-  }
-
-  .masters-grid::-webkit-scrollbar {
-    display: none;
+    padding-bottom: 0;
   }
 
   .masters-title {
@@ -1801,12 +1837,13 @@ button {
   }
 
   .master-card {
-    flex: 0 0 85vw;
-    max-width: 340px;
+    flex: none;
+    width: 100%;
+    max-width: none;
     height: 460px;
-    scroll-snap-align: start;
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.08);
+    touch-action: pan-y;
   }
 
   .master-info {
@@ -1856,8 +1893,11 @@ button {
   .gallery-grid {
     display: flex;
     overflow-x: auto;
-    scroll-snap-type: x mandatory;
+    overflow-y: hidden;
+    scroll-snap-type: x proximity;
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    touch-action: pan-x pan-y;
     gap: 10px;
     padding-left: 18px;
     padding-right: 18px;
@@ -1888,8 +1928,11 @@ button {
   .reviews-grid {
     display: flex;
     overflow-x: auto;
-    scroll-snap-type: x mandatory;
+    overflow-y: hidden;
+    scroll-snap-type: x proximity;
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    touch-action: pan-x pan-y;
     gap: 14px;
     padding-bottom: 14px;
     border-top: none;
@@ -1899,7 +1942,9 @@ button {
     display: none;
   }
 
-  .review-card {
+  .review-card,
+  .review-card:first-child,
+  .review-card:last-child {
     flex: 0 0 85vw;
     max-width: 320px;
     scroll-snap-align: start;
@@ -1933,9 +1978,17 @@ button {
     flex-wrap: wrap;
   }
 
+  .price-row.price-row-highlight {
+    margin-left: 0;
+    margin-right: 0;
+    padding: 16px 16px 16px 18px;
+    gap: 8px;
+  }
+
   .price-row-highlight .price-name {
     flex: 1 1 100%;
     margin-bottom: 4px;
+    padding-right: 4px;
   }
 
   .price-row-highlight .price-name::after {
@@ -1944,6 +1997,16 @@ button {
 
   .price-row-highlight .price-value {
     margin-left: auto;
+    white-space: nowrap;
+  }
+
+  .price-row-sub {
+    flex-wrap: nowrap;
+  }
+
+  .price-sub-val {
+    flex-shrink: 0;
+    white-space: nowrap;
   }
 
   .book-form {
@@ -1964,7 +2027,10 @@ button {
 
   .book-days {
     overflow-x: auto;
+    overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    touch-action: pan-x pan-y;
     gap: 8px;
     padding-bottom: 8px;
   }

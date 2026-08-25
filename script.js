@@ -42,6 +42,47 @@ document.addEventListener('DOMContentLoaded', () => {
   initTimeSlots();
   updateBookingSummary();
 
+  document.querySelectorAll('img').forEach((img) => {
+    img.draggable = false;
+  });
+
+  // Horizontal rows (reviews, gallery, dates) used to trap the first
+  // vertical pan: overflow-x:auto computes overflow-y to auto, and a
+  // translateY reveal added a few px of nested scroll. If the gesture
+  // is clearly vertical, temporarily lock x so the page can move.
+  const lockCarouselAxis = (scroller) => {
+    if (!scroller) return;
+    let startX = 0;
+    let startY = 0;
+    let axis = null;
+    const unlock = () => {
+      axis = null;
+      scroller.style.overflowX = '';
+      scroller.style.touchAction = '';
+    };
+    scroller.addEventListener('touchstart', (e) => {
+      const t = e.touches[0];
+      startX = t.clientX;
+      startY = t.clientY;
+      axis = null;
+    }, { passive: true });
+    scroller.addEventListener('touchmove', (e) => {
+      if (axis || !e.touches[0]) return;
+      const dx = Math.abs(e.touches[0].clientX - startX);
+      const dy = Math.abs(e.touches[0].clientY - startY);
+      if (dx < 8 && dy < 8) return;
+      axis = dy > dx ? 'y' : 'x';
+      if (axis === 'y') {
+        scroller.style.overflowX = 'hidden';
+        scroller.style.touchAction = 'pan-y';
+      }
+    }, { passive: true });
+    scroller.addEventListener('touchend', unlock, { passive: true });
+    scroller.addEventListener('touchcancel', unlock, { passive: true });
+  };
+
+  document.querySelectorAll('.reviews-grid, .gallery-grid, .book-days').forEach(lockCarouselAxis);
+
   // ===== SCROLL — Navbar + Parallax =====
   let ticking = false;
   window.addEventListener('scroll', () => {
@@ -238,7 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const monthName = kz ? getKzMonth() : getRuMonth();
     const summary = `${master} · ${svcName} · ${state.day} ${monthName}, ${state.time}`;
     bookSummary.textContent = summary;
-    bookTotal.textContent = price.toLocaleString('ru-RU') + ' ₸';
+    bookTotal.textContent = price.toLocaleString('ru-RU').replace(/\s/g, '\u00A0') + '\u00A0₸';
   }
 
   function getRuMonth() {
