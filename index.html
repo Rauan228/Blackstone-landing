@@ -2,8 +2,20 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Blackstone Barbershop — Премиальный барбершоп в Астане</title>
+  <script>
+    (function () {
+      var ua = navigator.userAgent || '';
+      var inApp = /Instagram|FBAN|FBAV|FB_IAB|Line\/|TikTok|musical_ly|BytedanceWebview|VKAndroidApp|Viber|Snapchat|Pinterest|Twitter|LinkedInApp|WhatsApp|MicroMessenger|Telegram/i.test(ua)
+        || !!window.TelegramWebviewProxy
+        || !!(window.Telegram && window.Telegram.WebApp);
+      if (!inApp && /iP(hone|od|ad)/.test(ua)) {
+        inApp = /AppleWebKit/.test(ua) && !/Safari\//.test(ua);
+      }
+      if (inApp) document.documentElement.classList.add('in-app');
+    })();
+  </script>
   <meta name="description" content="Blackstone — барбершоп для мужчин в Астане. Комплексная стрижка, борода, бритьё опасной бритвой. Ежедневно 10:00–22:00. Асфендиярова, 7.">
   <meta property="og:title" content="Blackstone Barbershop — Премиальный барбершоп в Астане">
   <meta property="og:description" content="Мужской стиль без компромиссов. Комплексная стрижка — 5 000 ₸. Запись онлайн.">

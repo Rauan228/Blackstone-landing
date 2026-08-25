@@ -24,10 +24,18 @@
   --border-gold: rgba(212, 169, 95, .35);
   --ff-heading: 'Unbounded', system-ui, sans-serif;
   --ff-body: 'Golos Text', system-ui, sans-serif;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --vv-top: 0px;
+  --vv-bottom: 0px;
+  --inapp-top: 0px;
+  --chrome-top: calc(var(--vv-top) + var(--inapp-top));
+  --chrome-bottom: calc(var(--vv-bottom) + var(--safe-bottom));
 }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: calc(72px + var(--chrome-top) + var(--safe-top));
 }
 
 body {
@@ -135,7 +143,7 @@ button {
 /* --- Navbar --- */
 .nav {
   position: fixed;
-  top: 0;
+  top: var(--chrome-top);
   left: 0;
   right: 0;
   z-index: 60;
@@ -143,12 +151,15 @@ button {
   align-items: center;
   justify-content: space-between;
   gap: 28px;
-  padding: 22px 44px;
-  transition: all .45s cubic-bezier(.2, .8, .2, 1);
+  padding: calc(22px + var(--safe-top)) 44px 22px;
+  transition: padding .45s cubic-bezier(.2, .8, .2, 1),
+    background .45s cubic-bezier(.2, .8, .2, 1),
+    backdrop-filter .45s cubic-bezier(.2, .8, .2, 1),
+    border-color .45s cubic-bezier(.2, .8, .2, 1);
 }
 
 .nav.scrolled {
-  padding: 13px 44px;
+  padding: calc(13px + var(--safe-top)) 44px 13px;
   background: rgba(8, 7, 6, .88);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(255, 255, 255, .08);
@@ -305,11 +316,14 @@ button {
 /* --- Mobile Menu Overlay --- */
 .mobile-menu {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 55;
   background: rgba(8, 7, 6, .97);
   backdrop-filter: blur(6px);
-  padding: 96px 24px 32px;
+  padding: calc(96px + var(--chrome-top) + var(--safe-top)) 24px 32px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -723,6 +737,9 @@ button {
   line-height: 1;
   white-space: nowrap;
   flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: .12em;
 }
 
 .price-val .currency,
@@ -1589,7 +1606,7 @@ button {
     align-items: center;
     gap: 10px;
     position: fixed;
-    bottom: 16px;
+    bottom: calc(16px + var(--chrome-bottom));
     left: 14px;
     right: 14px;
     z-index: 99;
@@ -1678,7 +1695,7 @@ button {
 
   /* Body padding for floating bar */
   body {
-    padding-bottom: 74px;
+    padding-bottom: calc(74px + var(--chrome-bottom));
   }
 
   /* Don't translateY-reveal inside nested scrollers — it creates 28px of
@@ -1697,10 +1714,14 @@ button {
   }
 
   .nav {
-    padding: 14px 18px;
+    padding: calc(14px + var(--safe-top)) 18px 14px;
     background: rgba(8, 7, 6, 0.94);
     backdrop-filter: blur(16px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .nav.scrolled {
+    padding: calc(10px + var(--safe-top)) 18px 10px;
   }
 
   .nav-logo-title {
@@ -1731,7 +1752,7 @@ button {
   .hero-image {
     height: 340px;
     order: -1;
-    margin: 64px 0 -40px;
+    margin: calc(64px + var(--chrome-top)) 0 -40px;
     border-bottom: 1px solid var(--border);
   }
 
@@ -1875,17 +1896,23 @@ button {
   }
 
   .service-hero-price {
-    display: grid;
-    grid-template-columns: max-content minmax(0, 1fr);
-    align-items: baseline;
-    column-gap: 16px;
-    row-gap: 4px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
   }
 
   .service-hero-price .price-val {
-    font-size: 28px;
+    font-size: 26px;
+    line-height: 1;
+  }
+
+  .service-hero-price .price-lbl {
+    margin-top: 0;
+    line-height: 1;
     white-space: nowrap;
-    line-height: 1.15;
+    font-size: 10.5px;
+    letter-spacing: .03em;
   }
 
   .btn-hero-book {

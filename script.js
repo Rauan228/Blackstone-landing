@@ -41,6 +41,41 @@ document.addEventListener('DOMContentLoaded', () => {
   initDays();
   initTimeSlots();
   updateBookingSummary();
+  syncChromeInsets();
+
+  // In-app browsers (Telegram, Instagram, FB, WKWebView) overlay their
+  // close/URL chrome on the page. position:fixed; top:0 sits under it.
+  // visualViewport covers Safari URL-bar show/hide; --inapp-top covers overlay.
+  function syncChromeInsets() {
+    const root = document.documentElement;
+    const vv = window.visualViewport;
+    const innerH = window.innerHeight;
+    const vvTop = vv ? Math.max(0, vv.offsetTop) : 0;
+    const vvBottom = vv ? Math.max(0, innerH - vv.height - vv.offsetTop) : 0;
+
+    let inappTop = 0;
+    if (root.classList.contains('in-app') && vvTop < 8) {
+      const screenH = (window.screen && window.screen.height) || 0;
+      if (screenH && innerH > screenH * 0.84) {
+        inappTop = 56;
+      }
+    }
+
+    root.style.setProperty('--vv-top', vvTop + 'px');
+    root.style.setProperty('--vv-bottom', vvBottom + 'px');
+    root.style.setProperty('--inapp-top', inappTop + 'px');
+  }
+
+  const onChromeChange = () => {
+    window.requestAnimationFrame(syncChromeInsets);
+  };
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', onChromeChange);
+    window.visualViewport.addEventListener('scroll', onChromeChange);
+  }
+  window.addEventListener('resize', onChromeChange);
+  window.addEventListener('orientationchange', onChromeChange);
+  window.addEventListener('pageshow', onChromeChange);
 
   document.querySelectorAll('img').forEach((img) => {
     img.draggable = false;
