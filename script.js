@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     scroller.addEventListener('touchcancel', unlock, { passive: true });
   };
 
-  document.querySelectorAll('.reviews-grid, .gallery-grid, .book-days').forEach(lockCarouselAxis);
+  document.querySelectorAll('.masters-grid, .reviews-grid, .gallery-grid, .book-days').forEach(lockCarouselAxis);
 
   // ===== SCROLL — Navbar + Parallax =====
   let ticking = false;

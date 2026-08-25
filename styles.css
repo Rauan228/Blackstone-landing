@@ -1820,15 +1820,23 @@ button {
     order: -1;
   }
 
-  /* Masters: stack, don't use a nested x-scroller (it traps the first pan). */
+  /* Masters Mobile UI */
   .masters-grid {
     display: flex;
-    flex-direction: column;
-    overflow: visible;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    touch-action: pan-x pan-y;
     gap: 14px;
+    padding-bottom: 16px;
     padding-left: 18px;
     padding-right: 18px;
-    padding-bottom: 0;
+  }
+
+  .masters-grid::-webkit-scrollbar {
+    display: none;
   }
 
   .masters-title {
@@ -1837,13 +1845,12 @@ button {
   }
 
   .master-card {
-    flex: none;
-    width: 100%;
-    max-width: none;
+    flex: 0 0 85vw;
+    max-width: 340px;
     height: 460px;
+    scroll-snap-align: start;
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.08);
-    touch-action: pan-y;
   }
 
   .master-info {
