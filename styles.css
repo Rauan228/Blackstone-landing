@@ -27,10 +27,9 @@
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
   --vv-top: 0px;
-  --vv-bottom: 0px;
   --inapp-top: 0px;
   --chrome-top: calc(var(--vv-top) + var(--inapp-top));
-  --chrome-bottom: calc(var(--vv-bottom) + var(--safe-bottom));
+  --chrome-bottom: var(--safe-bottom);
 }
 
 html {

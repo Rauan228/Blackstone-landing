@@ -43,15 +43,14 @@ document.addEventListener('DOMContentLoaded', () => {
   updateBookingSummary();
   syncChromeInsets();
 
-  // In-app browsers (Telegram, Instagram, FB, WKWebView) overlay their
-  // close/URL chrome on the page. position:fixed; top:0 sits under it.
-  // visualViewport covers Safari URL-bar show/hide; --inapp-top covers overlay.
+  // In-app overlay (Telegram/Instagram) needs a one-shot top offset.
+  // Do not follow visualViewport on scroll: Chrome/Safari toolbar
+  // show-hide and rubber-band would lift the bottom CTA, then drop it.
   function syncChromeInsets() {
     const root = document.documentElement;
-    const vv = window.visualViewport;
     const innerH = window.innerHeight;
+    const vv = window.visualViewport;
     const vvTop = vv ? Math.max(0, vv.offsetTop) : 0;
-    const vvBottom = vv ? Math.max(0, innerH - vv.height - vv.offsetTop) : 0;
 
     let inappTop = 0;
     if (root.classList.contains('in-app') && vvTop < 8) {
@@ -61,21 +60,11 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    root.style.setProperty('--vv-top', vvTop + 'px');
-    root.style.setProperty('--vv-bottom', vvBottom + 'px');
     root.style.setProperty('--inapp-top', inappTop + 'px');
   }
 
-  const onChromeChange = () => {
-    window.requestAnimationFrame(syncChromeInsets);
-  };
-  if (window.visualViewport) {
-    window.visualViewport.addEventListener('resize', onChromeChange);
-    window.visualViewport.addEventListener('scroll', onChromeChange);
-  }
-  window.addEventListener('resize', onChromeChange);
-  window.addEventListener('orientationchange', onChromeChange);
-  window.addEventListener('pageshow', onChromeChange);
+  window.addEventListener('orientationchange', syncChromeInsets);
+  window.addEventListener('pageshow', syncChromeInsets);
 
   document.querySelectorAll('img').forEach((img) => {
     img.draggable = false;
