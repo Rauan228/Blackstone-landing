@@ -559,6 +559,10 @@ button {
   transition: transform .9s cubic-bezier(.2, .8, .2, 1);
 }
 
+.hero-image img {
+  object-position: center 58%;
+}
+
 .hero-image::after {
   content: '';
   position: absolute;
@@ -948,6 +952,14 @@ button {
   pointer-events: none;
 }
 
+.loc-main img {
+  object-position: center 40%;
+}
+
+.service-hero-media img {
+  object-position: center 35%;
+}
+
 .loc-main-overlay {
   position: absolute;
   inset: 0;
@@ -1076,8 +1088,8 @@ button {
 
 .gallery-grid {
   display: grid;
-  grid-template-columns: 1.6fr 1fr 1fr;
-  grid-template-rows: 190px 190px;
+  grid-template-columns: 1.45fr 1fr 1fr 1fr;
+  grid-template-rows: 210px 210px;
   gap: 2px;
 }
 
