@@ -567,7 +567,7 @@ button {
 }
 
 .hero-image img {
-  object-position: center 78%;
+  object-position: center center;
 }
 
 .hero-image::after {
