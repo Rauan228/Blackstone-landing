@@ -3,9 +3,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ===== STATE =====
   const state = {
-    lang: 'ru',
+    lang: (new URLSearchParams(location.search).get('lang') === 'kz'
+      || new URLSearchParams(location.search).get('lang') === 'kk') ? 'kz' : 'ru',
     menuOpen: false,
     langLock: false
+  };
+
+  const META = {
+    ru: {
+      title: 'Blackstone — барбершоп в Астане | стрижка 5 000 ₸',
+      description: 'Blackstone — мужской барбершоп в Астане, Санжара Асфендиярова, 7. Комплекс 5 000 ₸: стрижка, борода, чёрная маска. Ежедневно 10:00–22:00. Запись в WhatsApp.'
+    },
+    kz: {
+      title: 'Blackstone — Астанадағы барбершоп | шаш қию 5 000 ₸',
+      description: 'Blackstone — Астанадағы ерлер барбершопы, Санжар Асфендияров, 7. Кешенді шаш қию 5 000 ₸. Күн сайын 10:00–22:00. WhatsApp-қа жазылу.'
+    }
   };
 
   const WA_NUMBER = '77751924036';
@@ -163,6 +175,10 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('[data-lang]').forEach(b => {
         b.classList.toggle('active', b.dataset.lang === state.lang);
       });
+      const url = new URL(location.href);
+      if (state.lang === 'kz') url.searchParams.set('lang', 'kz');
+      else url.searchParams.delete('lang');
+      history.replaceState(null, '', url);
       applyLanguage();
     });
   });
@@ -188,13 +204,28 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  function applyLanguage() {
+  function setMeta() {
+    const pack = META[state.lang === 'kz' ? 'kz' : 'ru'];
+    document.title = pack.title;
+    const desc = document.querySelector('meta[name="description"]');
+    if (desc) desc.setAttribute('content', pack.description);
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) ogTitle.setAttribute('content', pack.title);
+    const ogDesc = document.querySelector('meta[property="og:description"]');
+    if (ogDesc) ogDesc.setAttribute('content', pack.description);
+    const twTitle = document.querySelector('meta[name="twitter:title"]');
+    if (twTitle) twTitle.setAttribute('content', pack.title);
+    const twDesc = document.querySelector('meta[name="twitter:description"]');
+    if (twDesc) twDesc.setAttribute('content', pack.description);
+    const ogLocale = document.querySelector('meta[property="og:locale"]');
+    if (ogLocale) ogLocale.setAttribute('content', state.lang === 'kz' ? 'kk_KZ' : 'ru_RU');
+  }
+
+  function applyLanguage(immediate) {
     const kz = state.lang === 'kz';
     const swap = () => {
       document.documentElement.lang = kz ? 'kk' : 'ru';
-      document.title = kz
-        ? 'Blackstone Barbershop — Астанадағы премиум барбершоп'
-        : 'Blackstone Barbershop — Премиальный барбершоп в Астане';
+      setMeta();
 
       document.querySelectorAll('[data-kz]').forEach(el => {
         if (el.__ru === undefined) el.__ru = el.textContent;
@@ -216,8 +247,19 @@ document.addEventListener('DOMContentLoaded', () => {
       state.langLock = false;
     };
 
+    if (immediate) {
+      swap();
+      return;
+    }
     document.body.classList.add('lang-switching');
     window.setTimeout(swap, 200);
+  }
+
+  if (state.lang === 'kz') {
+    document.querySelectorAll('[data-lang]').forEach(b => {
+      b.classList.toggle('active', b.dataset.lang === 'kz');
+    });
+    applyLanguage(true);
   }
 
 
