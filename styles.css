@@ -1612,6 +1612,15 @@ button {
   color: var(--text-dim);
 }
 
+.faq-item a {
+  color: var(--gold);
+  border-bottom: 1px solid rgba(212, 169, 95, .35);
+}
+
+.faq-item a:hover {
+  color: var(--gold-light);
+}
+
 /* --- Contacts --- */
 .contacts {
   border-top: 1px solid rgba(255, 255, 255, .08);
