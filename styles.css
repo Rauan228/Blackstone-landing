@@ -37,6 +37,13 @@ html {
   scroll-padding-top: calc(72px + var(--chrome-top) + var(--safe-top));
 }
 
+/* Instagram/Telegram already inset the webview under their URL bar.
+   Don't stack notch padding on top of that. */
+html.in-app {
+  --safe-top: 0px;
+  --inapp-top: 0px;
+}
+
 body {
   margin: 0;
   background: var(--bg);

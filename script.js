@@ -20,24 +20,10 @@ document.addEventListener('DOMContentLoaded', () => {
   syncChromeInsets();
   refreshWaLinks();
 
-  // In-app overlay (Telegram/Instagram) needs a one-shot top offset.
-  // Do not follow visualViewport on scroll: Chrome/Safari toolbar
-  // show-hide and rubber-band would lift the bottom CTA, then drop it.
+  // In-app browsers (Instagram/Telegram) already sit below their chrome.
+  // Extra --inapp-top created a dead gap under the IG URL bar.
   function syncChromeInsets() {
-    const root = document.documentElement;
-    const innerH = window.innerHeight;
-    const vv = window.visualViewport;
-    const vvTop = vv ? Math.max(0, vv.offsetTop) : 0;
-
-    let inappTop = 0;
-    if (root.classList.contains('in-app') && vvTop < 8) {
-      const screenH = (window.screen && window.screen.height) || 0;
-      if (screenH && innerH > screenH * 0.84) {
-        inappTop = 56;
-      }
-    }
-
-    root.style.setProperty('--inapp-top', inappTop + 'px');
+    document.documentElement.style.setProperty('--inapp-top', '0px');
   }
 
   window.addEventListener('orientationchange', syncChromeInsets);
