@@ -181,8 +181,9 @@ button {
 .nav-logo img {
   display: block;
   width: auto;
-  height: 52px;
+  height: 58px;
   object-fit: contain;
+  filter: drop-shadow(0 0 10px rgba(212, 169, 95, .35));
 }
 
 .nav-links {
