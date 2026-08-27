@@ -577,6 +577,18 @@ button {
   object-position: center center;
 }
 
+.hero-badge {
+  position: absolute;
+  top: 22px;
+  right: 28px;
+  width: min(210px, 26vw);
+  height: auto;
+  z-index: 4;
+  pointer-events: none;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, .55));
+}
+
 .hero-image::after {
   content: '';
   position: absolute;
@@ -1864,6 +1876,12 @@ body.lang-switching [data-kz] {
     order: -1;
     margin: calc(64px + var(--chrome-top)) 0 -40px;
     border-bottom: 1px solid var(--border);
+  }
+
+  .hero-badge {
+    top: 10px;
+    right: 12px;
+    width: 92px;
   }
 
   .hero-image::after {
