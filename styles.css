@@ -1572,55 +1572,6 @@ button {
   color: var(--gold) !important;
 }
 
-/* --- FAQ --- */
-.faq {
-  padding: 0 44px 104px;
-  scroll-margin-top: 76px;
-}
-
-.faq-header {
-  margin-bottom: 40px;
-}
-
-.faq-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1px;
-  background: rgba(255, 255, 255, .06);
-  border: 1px solid rgba(255, 255, 255, .06);
-}
-
-.faq-item {
-  background: var(--bg-card);
-  padding: 36px 32px;
-}
-
-.faq-item h3 {
-  font-family: var(--ff-heading);
-  font-weight: 600;
-  font-size: 15px;
-  letter-spacing: .04em;
-  line-height: 1.45;
-  color: var(--text);
-  margin: 0;
-}
-
-.faq-item p {
-  margin: 14px 0 0;
-  font-size: 14px;
-  line-height: 1.75;
-  color: var(--text-dim);
-}
-
-.faq-item a {
-  color: var(--gold);
-  border-bottom: 1px solid rgba(212, 169, 95, .35);
-}
-
-.faq-item a:hover {
-  color: var(--gold-light);
-}
-
 /* --- Contacts --- */
 .contacts {
   border-top: 1px solid rgba(255, 255, 255, .08);
@@ -2373,20 +2324,6 @@ body.lang-switching [data-kz] {
 
   .btn-gold::after {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 16px 100%, 0 calc(100% - 16px));
-  }
-
-  .faq {
-    padding-left: 18px;
-    padding-right: 18px;
-    padding-bottom: 64px;
-  }
-
-  .faq-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .faq-item {
-    padding: 24px 20px;
   }
 
   /* Contacts */
