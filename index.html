@@ -121,10 +121,9 @@
           "name": "Астана"
         },
         "knowsLanguage": ["ru", "kk"],
-        "knowsAbout": ["мужская стрижка", "фейд", "оформление бороды", "бритьё", "барбершоп Астана"],
+        "knowsAbout": ["мужская стрижка", "фейд", "оформление бороды", "бритьё", "барбершоп Астана", "обучение барберов"],
         "employee": [
-          { "@type": "Person", "name": "Хан", "jobTitle": "Барбер" },
-          { "@type": "Person", "name": "Айдар", "jobTitle": "Барбер" }
+          { "@type": "Person", "name": "Хан", "jobTitle": "Барбер" }
         ],
         "hasOfferCatalog": {
           "@type": "OfferCatalog",
@@ -135,6 +134,14 @@
               "name": "Комплексная мужская стрижка",
               "description": "Стрижка (классика / фейд), мытьё головы, борода и усы, премиум-стайлинг, чёрная маска, коррекция бровей, волосы в ушах. 60 минут.",
               "price": "5000",
+              "priceCurrency": "KZT",
+              "availability": "https://schema.org/InStock"
+            },
+            {
+              "@type": "Offer",
+              "name": "Обучение барбера",
+              "description": "Курс барберскому делу в зале Blackstone, Астана. Ведёт мастер Хан.",
+              "price": "250000",
               "priceCurrency": "KZT",
               "availability": "https://schema.org/InStock"
             }
@@ -171,7 +178,8 @@
   </a>
   <nav class="nav-links" id="nav-links">
     <a href="#services" data-kz="Қызметтер">Услуги</a>
-    <a href="#masters" data-kz="Шеберлер">Мастера</a>
+    <a href="#masters" data-kz="Шебер">Мастер</a>
+    <a href="#academy" data-kz="Оқыту">Обучение</a>
     <a href="#locations" data-kz="Локациялар">Локации</a>
     <a href="#reviews" data-kz="Пікірлер">Отзывы</a>
     <a href="#contacts" data-kz="Байланыс">Контакты</a>
@@ -198,7 +206,8 @@
 <div class="mobile-menu" id="mobile-menu">
   <nav>
     <a href="#services" data-kz="Қызметтер">Услуги</a>
-    <a href="#masters" data-kz="Шеберлер">Мастера</a>
+    <a href="#masters" data-kz="Шебер">Мастер</a>
+    <a href="#academy" data-kz="Оқыту">Обучение</a>
     <a href="#locations" data-kz="Локациялар">Локации</a>
     <a href="#reviews" data-kz="Пікірлер">Отзывы</a>
     <a href="#contacts" data-kz="Байланыс">Контакты</a>
@@ -229,7 +238,7 @@
       </a>
     </div>
     <div class="hero-stats" data-reveal data-delay=".22">
-      <span><span class="stat-num">2</span><span data-kz="шебер">мастера</span></span>
+      <span><span class="stat-num">1</span><span data-kz="шебер">мастер</span></span>
       <span><span class="stat-num">10</span><span data-kz="жылдан астам тәжірибе">лет опыта</span></span>
       <span><span class="stat-num">10—22</span><span data-kz="күн сайын">ежедневно</span></span>
     </div>
@@ -242,8 +251,8 @@
 <!-- ===== MARQUEE ===== -->
 <div class="marquee-wrap">
   <div class="marquee-track">
-    <span><span>Санжара Асфендиярова, 7</span><span class="sep">·</span><span>10:00 — 22:00</span><span class="sep">·</span><span data-kz="WhatsApp-та жазылу">Запись в WhatsApp</span><span class="sep">·</span><span data-kz="Шаш қиюдан да көп">Больше, чем стрижка</span><span class="sep">·</span></span>
-    <span><span>Санжара Асфендиярова, 7</span><span class="sep">·</span><span>10:00 — 22:00</span><span class="sep">·</span><span data-kz="WhatsApp-та жазылу">Запись в WhatsApp</span><span class="sep">·</span><span data-kz="Шаш қиюдан да көп">Больше, чем стрижка</span><span class="sep">·</span></span>
+    <span><span>Санжара Асфендиярова, 7</span><span class="sep">·</span><span>10:00 — 22:00</span><span class="sep">·</span><span data-kz="WhatsApp-та жазылу">Запись в WhatsApp</span><span class="sep">·</span><span data-kz="Барберге оқыту · 250&nbsp;000&nbsp;₸">Обучение барбера · 250&nbsp;000&nbsp;₸</span><span class="sep">·</span></span>
+    <span><span>Санжара Асфендиярова, 7</span><span class="sep">·</span><span>10:00 — 22:00</span><span class="sep">·</span><span data-kz="WhatsApp-та жазылу">Запись в WhatsApp</span><span class="sep">·</span><span data-kz="Барберге оқыту · 250&nbsp;000&nbsp;₸">Обучение барбера · 250&nbsp;000&nbsp;₸</span><span class="sep">·</span></span>
   </div>
 </div>
 
@@ -331,49 +340,73 @@
 
 </section>
 
-<!-- ===== MASTERS ===== -->
+<!-- ===== MASTER ===== -->
 <section class="masters" id="masters">
-  <div class="masters-title">
-    <h2 class="section-title" data-reveal data-kz="ШЕБЕРЛЕР">МАСТЕРА</h2>
-  </div>
-  <div class="masters-grid">
-
-    <div class="master-card" data-reveal data-delay=".04">
+  <div class="master-feature">
+    <div class="master-copy" data-reveal>
+      <div class="section-label" data-kz="ШЕБЕР">МАСТЕР</div>
+      <h2 class="master-name">Хан</h2>
+      <div class="master-role">
+        <span data-kz="Барбер">Барбер</span>
+        <span class="line"></span>
+        <span data-kz="10 жыл тәжірибе">10 лет</span>
+      </div>
+      <p class="master-desc" data-kz="Классикалық шаш қию және сақалмен жұмыс. Пішінді ұстап тұратын нақты сызықтар.">Классические стрижки и работа с бородой. Точные линии, которые держат форму.</p>
+      <div class="master-links">
+        <a href="https://wa.me/77751924036" data-wa data-wa-master="Хан" target="_blank" rel="noopener" data-kz="Шеберге жазылу">Записаться к нему</a>
+        <a href="https://www.instagram.com/blackstone.offical_/" class="dim" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+    <div class="master-photo" data-reveal data-delay=".08">
       <img src="images/master_alexey.jpg" alt="Хан — барбер Blackstone" loading="lazy">
-      <div class="master-overlay"></div>
-      <div class="master-info">
-        <div class="master-name">Хан</div>
-        <div class="master-role">
-          <span data-kz="Барбер">Барбер</span>
-          <span class="line"></span>
-          <span data-kz="10 жыл тәжірибе">10 лет</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ACADEMY ===== -->
+<section class="academy" id="academy">
+  <div class="academy-header">
+    <div>
+      <div class="section-label" data-kz="ОҚЫТУ">ОБУЧЕНИЕ</div>
+      <h2 class="section-title" data-reveal data-kz="БАРБЕР БОЛ">СТАНЬ БАРБЕРОМ</h2>
+    </div>
+    <span class="services-note" data-reveal data-delay=".05" data-kz="Залда · очно">В зале · очно</span>
+  </div>
+
+  <div class="academy-card" data-reveal>
+    <div class="academy-main">
+      <h3 class="academy-title" data-kz="Ханнан үйрен. Blackstone залында.">Учись у Хана. В зале Blackstone.</h3>
+      <p class="academy-desc" data-kz="Барберлік курсы. Жүргізеді — Хан, 10 жыл тәжірибесі бар шебер.">Курс барберскому делу. Ведёт Хан — мастер с опытом 10 лет.</p>
+
+      <ul class="academy-facts">
+        <li>
+          <span class="academy-k" data-kz="Шебер">Мастер</span>
+          <span class="academy-v">Хан</span>
+          <span class="academy-s" data-kz="10 жыл тәжірибе">10 лет опыта</span>
+        </li>
+        <li>
+          <span class="academy-k" data-kz="Орын">Место</span>
+          <span class="academy-v">Астана</span>
+          <span class="academy-s">Санжара Асфендиярова, 7</span>
+        </li>
+        <li>
+          <span class="academy-k" data-kz="Нәтиже">Итог</span>
+          <span class="academy-v" data-kz="Өз креслоң">Своё кресло</span>
+          <span class="academy-s" data-kz="Курс соңында өз мамандығың">Своя профессия после курса</span>
+        </li>
+      </ul>
+
+      <div class="academy-action">
+        <div class="academy-price">
+          <span class="price-val">250&nbsp;000&nbsp;<span class="currency">₸</span></span>
+          <span class="price-lbl" data-kz="оқыту құны">стоимость обучения</span>
         </div>
-        <p class="master-desc" data-kz="Классикалық шаш қию және сақалмен жұмыс. Пішінді ұстап тұратын нақты сызықтар.">Классические стрижки и работа с бородой. Точные линии, которые держат форму.</p>
-        <div class="master-links">
-          <a href="https://wa.me/77751924036" data-wa data-wa-master="Хан" target="_blank" rel="noopener" data-kz="Шеберге жазылу">Записаться к нему</a>
-          <a href="https://www.instagram.com/blackstone.offical_/" class="dim" target="_blank" rel="noopener">Instagram</a>
-        </div>
+        <a href="https://wa.me/77751924036" class="btn-primary btn-hero-book" data-wa data-wa-intent="course" target="_blank" rel="noopener" data-kz="Оқытуға жазылу">Записаться на обучение</a>
       </div>
     </div>
-
-    <div class="master-card" data-reveal data-delay=".1">
-      <img src="images/master_arman.jpg" alt="Айдар — барбер Blackstone" loading="lazy">
-      <div class="master-overlay"></div>
-      <div class="master-info">
-        <div class="master-name">Айдар</div>
-        <div class="master-role">
-          <span data-kz="Барбер">Барбер</span>
-          <span class="line"></span>
-          <span data-kz="5 жыл тәжірибе">5 лет</span>
-        </div>
-        <p class="master-desc" data-kz="Заманауи бейнелер мен детальдар. Фейд және мінезді сәндеу.">Современные образы и детали. Фейды и укладка с характером.</p>
-        <div class="master-links">
-          <a href="https://wa.me/77751924036" data-wa data-wa-master="Айдар" target="_blank" rel="noopener" data-kz="Шеберге жазылу">Записаться к нему</a>
-          <a href="https://www.instagram.com/blackstone.offical_/" class="dim" target="_blank" rel="noopener">Instagram</a>
-        </div>
-      </div>
+    <div class="academy-media">
+      <img src="images/atmosphere_1.jpg" alt="Зал Blackstone, где проходит обучение" loading="lazy">
     </div>
-
   </div>
 </section>
 
@@ -447,35 +480,8 @@
             <span class="review-stars">★★★★★</span>
             <span class="review-src">2GIS</span>
           </div>
-          <p class="review-text" data-kz="Айдар, рахмет! Шашымды керемет етіп алып бердің. Өз ісіңнің нағыз шеберісің!">Айдар, рахмет! Шашымды керемет етіп алып бердің. Өз ісіңнің нағыз шеберісің!</p>
-          <div class="review-author">Алиба Кокенов</div>
-        </article>
-
-        <article class="review-card">
-          <div class="review-top">
-            <span class="review-stars">★★★★★</span>
-            <span class="review-src">2GIS</span>
-          </div>
           <p class="review-text" data-kz="Хан — үздік! Басымда сиқыр жасады, енді тек соған барамын.">Хан лучший! Волшебство на голове сотворил, теперь только к нему.</p>
           <div class="review-author">Данияр Куанышев</div>
-        </article>
-
-        <article class="review-card">
-          <div class="review-top">
-            <span class="review-stars">★★★★★</span>
-            <span class="review-src">2GIS</span>
-          </div>
-          <p class="review-text" data-kz="Айдарда болдым, 5 мыңға 15 жас жасартып жіберді. Таза жұмыс.">Был у Айдара, за 5 000 ₸ сделал моложе на 15 лет. Красавчик, чистая работа.</p>
-          <div class="review-author">Димаш</div>
-        </article>
-
-        <article class="review-card">
-          <div class="review-top">
-            <span class="review-stars">★★★★★</span>
-            <span class="review-src">2GIS</span>
-          </div>
-          <p class="review-text" data-kz="Барбер Айдарға рақмет, жоғары кәсібилік және жақсы шаш қию. 5 из 5!">Благодарю барбера Айдара за высокий профессионализм и хорошую стрижку. 5 из 5!</p>
-          <div class="review-author">Амир Толешев</div>
         </article>
 
         <article class="review-card">

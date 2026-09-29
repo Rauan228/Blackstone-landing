@@ -820,70 +820,60 @@ button {
 }
 
 
-/* --- Masters --- */
+/* --- Master --- */
 .masters {
-  padding: 0 0 104px;
+  padding: 0 44px 104px;
   scroll-margin-top: 76px;
 }
 
-.masters-title {
-  padding: 0 44px 40px;
-}
-
-.masters-grid {
+.master-feature {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 0.92fr 1.08fr;
   gap: 2px;
+  min-height: 680px;
+  background: var(--bg-card);
 }
 
-.master-card {
+.master-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 56px 52px 52px;
+  background:
+    radial-gradient(ellipse at 0% 100%, rgba(212, 169, 95, .09), transparent 58%),
+    var(--bg-card);
+}
+
+.master-photo {
   position: relative;
-  height: 600px;
+  min-height: 680px;
   overflow: hidden;
 }
 
-.master-card img {
+.master-photo img {
+  position: absolute;
+  inset: 0;
   pointer-events: none;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  object-position: center 18%;
+  object-position: center 22%;
   transition: transform 1.2s cubic-bezier(.2, .8, .2, 1);
 }
 
-.master-card:nth-child(1) img {
-  object-position: center 16%;
-}
-
-.master-card:nth-child(2) img {
-  object-position: center 20%;
-}
-
 @media (hover: hover) and (pointer: fine) {
-  .master-card:hover img {
-    transform: scale(1.05);
+  .master-photo:hover img {
+    transform: scale(1.04);
   }
 }
 
-.master-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg,
-      rgba(8, 7, 6, .12) 28%, rgba(8, 7, 6, .94));
-  pointer-events: none;
-}
-
-.master-info {
-  position: absolute;
-  left: 40px;
-  right: 40px;
-  bottom: 38px;
-  pointer-events: none;
-}
-
 .master-name {
+  margin-top: auto;
   font-family: var(--ff-heading);
-  font-weight: 400;
-  font-size: 38px;
-  line-height: 1;
+  font-weight: 500;
+  font-size: clamp(56px, 6vw, 88px);
+  line-height: .92;
+  letter-spacing: -.03em;
 }
 
 .master-role {
@@ -936,6 +926,139 @@ button {
 .master-links a.dim {
   color: var(--text-dim);
   border: none;
+}
+
+/* --- Academy / training --- */
+.academy {
+  padding: 0 44px 104px;
+  scroll-margin-top: 76px;
+}
+
+.academy-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 44px;
+}
+
+.academy-card {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  background: var(--bg-card);
+  border: 1px solid var(--border-gold);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, .5), inset 0 1px 0 rgba(255, 255, 255, .08);
+}
+
+.academy-main {
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+}
+
+.academy-title {
+  font-family: var(--ff-heading);
+  font-weight: 600;
+  font-size: clamp(26px, 2.5vw, 36px);
+  line-height: 1.15;
+  margin-bottom: 14px;
+}
+
+.academy-desc {
+  max-width: 540px;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--text-dim);
+}
+
+.academy-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 32px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.academy-facts li {
+  padding: 18px 16px 16px;
+  border: 1px solid rgba(255, 255, 255, .08);
+  background: rgba(255, 255, 255, .02);
+}
+
+.academy-k {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 10px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.academy-v {
+  display: block;
+  font-family: var(--ff-heading);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.25;
+}
+
+.academy-s {
+  display: block;
+  margin-top: 6px;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+
+.academy-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+.academy-price {
+  display: flex;
+  flex-direction: column;
+}
+
+.academy-price .price-val {
+  font-family: var(--ff-heading);
+  font-weight: 700;
+  font-size: 32px;
+  color: var(--gold);
+  line-height: 1;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: .12em;
+}
+
+.academy-price .price-lbl {
+  margin-top: 6px;
+  font-size: 11px;
+  letter-spacing: .05em;
+  color: var(--text-muted);
+}
+
+.academy-media {
+  position: relative;
+  min-height: 420px;
+}
+
+.academy-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
 }
 
 /* --- Locations --- */
@@ -1761,6 +1884,29 @@ body.lang-switching [data-kz] {
 }
 
 /* ===== RESPONSIVE ===== */
+@media (max-width: 1280px) {
+  .nav {
+    gap: 16px;
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+
+  .nav-links {
+    gap: 14px;
+    font-size: 10px;
+    letter-spacing: .1em;
+  }
+
+  .nav-cta {
+    padding: 12px 16px 12px 14px;
+    letter-spacing: .12em;
+  }
+
+  .nav-logo img {
+    height: 46px;
+  }
+}
+
 @media (max-width: 1240px) {
   .services-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1926,7 +2072,9 @@ body.lang-switching [data-kz] {
   .reviews,
   .locations,
   .contacts,
-  .map-section {
+  .map-section,
+  .masters,
+  .academy {
     padding-left: 18px;
     padding-right: 18px;
   }
@@ -1934,7 +2082,8 @@ body.lang-switching [data-kz] {
   .services,
   .masters,
   .gallery,
-  .reviews {
+  .reviews,
+  .academy {
     padding-top: 52px;
     padding-bottom: 52px;
   }
@@ -2029,52 +2178,82 @@ body.lang-switching [data-kz] {
     order: -1;
   }
 
-  /* Masters Mobile UI */
-  .masters-grid {
-    display: flex;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior-x: contain;
-    touch-action: pan-x pan-y;
-    gap: 14px;
-    padding-bottom: 16px;
-    padding-left: 18px;
-    padding-right: 18px;
-  }
-
-  .masters-grid::-webkit-scrollbar {
-    display: none;
-  }
-
-  .masters-title {
-    padding-left: 18px;
-    padding-right: 18px;
-  }
-
-  .master-card {
-    flex: 0 0 85vw;
-    max-width: 340px;
-    height: 460px;
-    scroll-snap-align: start;
+  /* Master */
+  .master-feature {
+    grid-template-columns: 1fr;
+    min-height: 0;
     border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, .08);
   }
 
-  .master-info {
-    left: 20px;
-    right: 20px;
-    bottom: 24px;
+  .master-photo {
+    min-height: 340px;
+    order: -1;
   }
 
-  .master-name {
-    font-size: 30px;
+  .master-copy {
+    padding: 28px 22px 32px;
+  }
+
+  .master-copy .master-name {
+    font-size: 52px;
   }
 
   .master-desc {
-    font-size: 13px;
-    margin-top: 12px;
+    font-size: 13.5px;
+    margin-top: 14px;
+  }
+
+  /* Academy */
+  .academy-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  .academy-card {
+    grid-template-columns: 1fr;
+    border-radius: 12px;
+  }
+
+  .academy-media {
+    height: 220px;
+    order: -1;
+  }
+
+  .academy-main {
+    padding: 24px 20px 28px;
+  }
+
+  .academy-title {
+    font-size: 24px;
+  }
+
+  .academy-desc {
+    font-size: 13.5px;
+  }
+
+  .academy-facts {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin: 22px 0;
+  }
+
+  .academy-action {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .academy-price .price-val {
+    font-size: 28px;
+  }
+
+  .academy .btn-hero-book {
+    width: 100%;
+    text-align: center;
   }
 
   /* Locations */

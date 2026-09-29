@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
     scroller.addEventListener('touchcancel', unlock, { passive: true });
   };
 
-  document.querySelectorAll('.masters-grid, .gallery-grid').forEach(lockCarouselAxis);
+  document.querySelectorAll('.gallery-grid').forEach(lockCarouselAxis);
 
   const reviewsSet = document.querySelector('.reviews-set');
   if (reviewsSet && reviewsSet.parentElement) {
@@ -183,10 +183,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  function waHref(master) {
+  function waHref(el) {
     const kz = state.lang === 'kz';
+    const master = el.getAttribute('data-wa-master') || '';
+    const intent = el.getAttribute('data-wa-intent') || '';
     let msg;
-    if (master) {
+    if (intent === 'course') {
+      msg = kz
+        ? 'Сәлеметсіз бе! Blackstone-да барберлікке оқығым келеді (250 000 ₸). Бағдарлама мен күндер туралы айтып бересіз бе?'
+        : 'Здравствуйте! Хочу записаться на обучение барбера в Blackstone (250 000 ₸). Расскажите, пожалуйста, про программу и даты.';
+    } else if (master) {
       msg = kz
         ? `Сәлеметсіз бе! ${master} шеберіне комплекстік қиюға жазылғым келеді.`
         : `Здравствуйте! Хочу записаться к мастеру ${master} на комплексную стрижку.`;
@@ -200,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function refreshWaLinks() {
     document.querySelectorAll('[data-wa]').forEach((a) => {
-      a.href = waHref(a.getAttribute('data-wa-master') || '');
+      a.href = waHref(a);
     });
   }
 
