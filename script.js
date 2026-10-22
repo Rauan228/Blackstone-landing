@@ -190,13 +190,8 @@ document.addEventListener('DOMContentLoaded', () => {
   function waHref(el) {
     const kz = state.lang === 'kz';
     const master = el.getAttribute('data-wa-master') || '';
-    const intent = el.getAttribute('data-wa-intent') || '';
     let msg;
-    if (intent === 'course') {
-      msg = kz
-        ? 'Сәлеметсіз бе! Blackstone-да барберлікке оқығым келеді (250 000 ₸). Бағдарлама мен күндер туралы айтып бересіз бе?'
-        : 'Здравствуйте! Хочу записаться на обучение барбера в Blackstone (250 000 ₸). Расскажите, пожалуйста, про программу и даты.';
-    } else if (master) {
+    if (master) {
       msg = kz
         ? `Сәлеметсіз бе! ${master} шеберіне комплекстік қиюға жазылғым келеді.`
         : `Здравствуйте! Хочу записаться к мастеру ${master} на комплексную стрижку.`;
@@ -205,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ? 'Сәлеметсіз бе! Blackstone барбершопына комплекстік қиюға жазылғым келеді.'
         : 'Здравствуйте! Хочу записаться в Blackstone на комплексную стрижку.';
     }
-    const branchId = el.dataset.branch || ((master || intent === 'course') ? '1' : selectedBranch);
+    const branchId = el.dataset.branch || (master ? '1' : selectedBranch);
     msg += ` (${branches[branchId].address})`;
     return `https://wa.me/${branches[branchId].phone}?text=${encodeURIComponent(msg)}`;
   }
