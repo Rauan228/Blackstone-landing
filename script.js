@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const branches = {
     '1': { phone: '77751924036', display: '+7 775 192 40 36', address: 'Санжара Асфендиярова, 7, 2 этаж' },
-    '2': { phone: '77082997161', display: '+7 708 299 71 61', address: 'Е-36, 9 · ЖК Республика · Орда, 2 этаж' }
+    '2': { phone: '77082997261', display: '+7 708 299 72 61', address: 'Е-36, 9 · ЖК Республика · Орда, 2 этаж' }
   };
   let selectedBranch = '1';
 
