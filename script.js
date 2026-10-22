@@ -12,15 +12,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const META = {
     ru: {
       title: 'Blackstone — барбершоп в Астане | стрижка 5 000 ₸',
-      description: 'Blackstone — мужской барбершоп в Астане, Санжара Асфендиярова, 7. Комплекс 5 000 ₸: стрижка, борода, чёрная маска. Ежедневно 10:00–22:00. Запись в WhatsApp.'
+      description: 'Blackstone — два филиала в Астане: Асфендиярова, 7 и Е-36, 9, ЖК Республика. Комплекс 5 000 ₸: стрижка, борода, чёрная маска. Ежедневно 10:00–22:00. Запись в WhatsApp.'
     },
     kz: {
       title: 'Blackstone — Астанадағы барбершоп | шаш қию 5 000 ₸',
-      description: 'Blackstone — Астанадағы ерлер барбершопы, Санжар Асфендияров, 7. Кешенді шаш қию 5 000 ₸. Күн сайын 10:00–22:00. WhatsApp-қа жазылу.'
+      description: 'Blackstone — Астанадағы екі филиал: Асфендияров, 7 және Е-36, 9, ЖК Республика. Кешенді шаш қию 5 000 ₸. Күн сайын 10:00–22:00. WhatsApp-қа жазылу.'
     }
   };
 
-  const WA_NUMBER = '77751924036';
+  const branches = {
+    '1': { phone: '77751924036', display: '+7 775 192 40 36', address: 'Санжара Асфендиярова, 7, 2 этаж' },
+    '2': { phone: '77082997161', display: '+7 708 299 71 61', address: 'Е-36, 9 · ЖК Республика · Орда, 2 этаж' }
+  };
+  let selectedBranch = '1';
 
   // ===== ELEMENTS =====
   const navbar = document.getElementById('navbar');
@@ -201,7 +205,9 @@ document.addEventListener('DOMContentLoaded', () => {
         ? 'Сәлеметсіз бе! Blackstone барбершопына комплекстік қиюға жазылғым келеді.'
         : 'Здравствуйте! Хочу записаться в Blackstone на комплексную стрижку.';
     }
-    return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+    const branchId = el.dataset.branch || ((master || intent === 'course') ? '1' : selectedBranch);
+    msg += ` (${branches[branchId].address})`;
+    return `https://wa.me/${branches[branchId].phone}?text=${encodeURIComponent(msg)}`;
   }
 
   function refreshWaLinks() {
@@ -268,6 +274,34 @@ document.addEventListener('DOMContentLoaded', () => {
     applyLanguage(true);
   }
 
+
+
+  document.querySelectorAll('input[name="branch"]').forEach(input => {
+    input.addEventListener('change', () => {
+      selectedBranch = input.value;
+      refreshWaLinks();
+      document.querySelectorAll('[data-selected-phone]').forEach(link => {
+        link.href = `tel:+${branches[selectedBranch].phone}`;
+        if (!link.querySelector('svg')) link.textContent = branches[selectedBranch].display;
+      });
+      document.querySelector('[data-selected-address]').textContent = branches[selectedBranch].address;
+    });
+  });
+
+  const mapFrame = document.querySelector('.map-container iframe');
+  const firstMapSrc = mapFrame.src;
+  document.querySelectorAll('[data-map-branch]').forEach(control => {
+    control.addEventListener('click', () => {
+      const id = control.dataset.mapBranch;
+      mapFrame.src = id === '1' ? firstMapSrc : 'https://yandex.ru/map-widget/v1/?text=' + encodeURIComponent('Астана Е-36 9 ЖК Республика') + '&z=16';
+      mapFrame.title = `Blackstone — ${branches[id].address}`;
+      document.querySelectorAll('.map-switch button').forEach(button => {
+        const active = button.dataset.mapBranch === id;
+        button.classList.toggle('active', active);
+        button.setAttribute('aria-pressed', String(active));
+      });
+    });
+  });
 
   // ===== SMOOTH SCROLL for anchor links =====
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
