@@ -271,17 +271,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-  document.querySelectorAll('input[name="branch"]').forEach(input => {
-    input.addEventListener('change', () => {
-      selectedBranch = input.value;
-      refreshWaLinks();
-      document.querySelectorAll('[data-selected-phone]').forEach(link => {
-        link.href = `tel:+${branches[selectedBranch].phone}`;
-        if (!link.querySelector('svg')) link.textContent = branches[selectedBranch].display;
+  const bookingDialog = document.getElementById('booking-dialog');
+  let bookingOpener;
+  let previousOverflow = '';
+  function closeBooking() { bookingDialog.close(); }
+  document.querySelectorAll('a[href="#booking"]').forEach(link => {
+    link.addEventListener('click', event => {
+      event.preventDefault();
+      bookingOpener = link;
+      const master = link.dataset.bookMaster || '';
+      const call = link.dataset.bookAction === 'call';
+      const masterNote = bookingDialog.querySelector('.booking-master');
+      masterNote.hidden = !master;
+      masterNote.textContent = (state.lang === 'kz' ? 'Шебер: ' : 'Мастер: ') + master;
+      bookingDialog.querySelectorAll('[data-book-destination]').forEach(destination => {
+        destination.dataset.branch = destination.dataset.bookDestination;
+        destination.dataset.waMaster = master;
+        destination.href = call ? `tel:+${branches[destination.dataset.branch].phone}` : waHref(destination);
+        destination.querySelector('.destination-action').textContent = call
+          ? (state.lang === 'kz' ? 'Қоңырау →' : 'Позвонить →') : 'WhatsApp →';
       });
-      document.querySelector('[data-selected-address]').textContent = branches[selectedBranch].address;
+      bookingDialog.querySelector('.booking-footnote').hidden = call;
+      previousOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      bookingDialog.showModal();
     });
   });
+  bookingDialog.querySelector('.booking-close').addEventListener('click', closeBooking);
+  bookingDialog.addEventListener('click', event => {
+    if (event.target === bookingDialog) {
+      const rect = bookingDialog.getBoundingClientRect();
+      if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) closeBooking();
+    }
+  });
+  bookingDialog.addEventListener('close', () => {
+    document.body.style.overflow = previousOverflow;
+    bookingOpener?.focus({ preventScroll: true });
+  });
+  bookingDialog.querySelectorAll('[data-book-destination]').forEach(link => link.addEventListener('click', closeBooking));
 
   const mapFrame = document.querySelector('.map-container iframe');
   const firstMapSrc = mapFrame.src;
@@ -301,7 +328,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // ===== SMOOTH SCROLL for anchor links =====
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
-      const target = document.querySelector(this.getAttribute('href'));
+      const href = this.getAttribute('href');
+      if (e.defaultPrevented || href === '#' || href === '#booking') return;
+      const target = document.querySelector(href);
       if (target) {
         e.preventDefault();
         target.scrollIntoView({ behavior: 'smooth' });
