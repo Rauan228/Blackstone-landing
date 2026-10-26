@@ -315,6 +315,14 @@ document.addEventListener('DOMContentLoaded', () => {
   function updateDirections() {
     const second = mapBranch === '2';
     const kz = state.lang === 'kz';
+    const frame = document.querySelector('.branch-map iframe');
+    const mapUrl = new URL('https://maps.google.com/maps');
+    mapUrl.searchParams.set('q', second ? '51.124324,71.383483' : '51.134445,71.379266');
+    mapUrl.searchParams.set('z', '17');
+    mapUrl.searchParams.set('output', 'embed');
+    mapUrl.searchParams.set('hl', kz ? 'kk' : 'ru');
+    if (frame.src !== mapUrl.href) frame.src = mapUrl.href;
+    frame.title = second ? 'Карта Blackstone — ЖК Республика, Е-36, 9' : 'Карта Blackstone — Асфендиярова, 7';
     document.querySelector('[data-directions-title]').textContent = second ? 'ЖК Республика' : 'Асфендиярова, 7';
     document.querySelector('[data-directions-address]').textContent = second
       ? (kz ? 'Астана, Е-36, 9-үй · «Орда» минимаркеті, 2-қабат' : 'Астана, Е-36, дом 9 · Минимаркет Орда, 2 этаж')
