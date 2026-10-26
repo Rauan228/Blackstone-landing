@@ -250,6 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
       refreshWaLinks();
+      if (!immediate) updateDirections();
       document.body.classList.remove('lang-switching');
       state.langLock = false;
     };
@@ -310,13 +311,24 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   bookingDialog.querySelectorAll('[data-book-destination]').forEach(link => link.addEventListener('click', closeBooking));
 
-  const mapFrame = document.querySelector('.map-container iframe');
-  const firstMapSrc = mapFrame.src;
+  let mapBranch = '1';
+  function updateDirections() {
+    const second = mapBranch === '2';
+    const kz = state.lang === 'kz';
+    document.querySelector('[data-directions-title]').textContent = second ? 'ЖК Республика' : 'Асфендиярова, 7';
+    document.querySelector('[data-directions-address]').textContent = second
+      ? (kz ? 'Астана, Е-36, 9-үй · «Орда» минимаркеті, 2-қабат' : 'Астана, Е-36, дом 9 · Минимаркет Орда, 2 этаж')
+      : (kz ? 'Астана, Санжар Асфендияров көшесі, 7, 2-қабат' : 'Астана, Санжара Асфендиярова, 7, 2 этаж');
+    document.querySelector('[data-directions-link]').href = second
+      ? 'https://2gis.kz/astana/search/' + encodeURIComponent('Астана Е-36 9 ЖК Республика')
+      : 'https://2gis.kz/astana/firm/70000001089808898';
+  }
+  updateDirections();
   document.querySelectorAll('[data-map-branch]').forEach(control => {
     control.addEventListener('click', () => {
       const id = control.dataset.mapBranch;
-      mapFrame.src = id === '1' ? firstMapSrc : 'https://yandex.ru/map-widget/v1/?text=' + encodeURIComponent('Астана Е-36 9 ЖК Республика') + '&z=16';
-      mapFrame.title = `Blackstone — ${branches[id].address}`;
+      mapBranch = id;
+      updateDirections();
       document.querySelectorAll('.map-switch button').forEach(button => {
         const active = button.dataset.mapBranch === id;
         button.classList.toggle('active', active);
